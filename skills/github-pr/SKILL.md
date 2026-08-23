@@ -10,7 +10,7 @@ description: 建立 Pull Request。允許從任何非 main 分支發起到 main 
 ## 什麼時候觸發此技能？
 
 1. 當使用者輸入 `/antigravity-github-flow:github-pr`。
-2. 當使用者提及「發 PR」、「建立 Pull Request」、「發起代碼審查」時。
+2. 當使用者提及「發 PR」、「建立 Pull Request」、「發起程式碼審查」時。
 
 ## 執行的實作步驟
 

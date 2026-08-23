@@ -109,7 +109,7 @@
 ```text
 /antigravity-github-flow:github-pr
 ```
-- 情境：準備發起代碼審查（Code Review）並將變更合併至 main。
+- 情境：準備發起程式碼審查（Code Review）並將變更合併至 main。
 - 運作邏輯：
   1. 自動檢查工作分支並確保遠端進度最新。
   2. 自動總結近期 Commit 紀錄並以繁體中文撰寫標題與內容。
