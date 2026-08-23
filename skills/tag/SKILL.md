@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:tag
-description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的合併節點，自動判斷版號並打上 vX.Y.Z 格式的 Tag。支援手動指定版號。若不在主分支則拒絕執行。當發現多個未標籤合併節點時，會詢問使用者範圍。當使用者輸入 /antigravity-github-flow:tag 時觸發。
+name: antigravity-github-flow:github-flow:tag
+description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的合併節點，自動判斷版號並打上 vX.Y.Z 格式的 Tag。支援手動指定版號。若不在主分支則拒絕執行。當發現多個未標籤合併節點時，會詢問使用者範圍。當使用者輸入 /antigravity-github-flow:github-flow:tag 時觸發。
 ---
 
 # 自動版號標記（SemVer Tagging）
@@ -9,7 +9,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:tag`。
+1. 當使用者輸入 `/antigravity-github-flow:github-flow:tag`。
 2. 當使用者要求「打 tag」、「標記版本」、「自動判斷版號」時。
 
 ## 執行的實作步驟
@@ -21,7 +21,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的�
    - 若主分支落後遠端，先執行 `git pull --ff-only` 確保本地主分支為最新狀態。
 
 2. 第二步：檢查手動指定版號
-   - 若使用者在呼叫技能時明確提供版號（例如：`/antigravity-github-flow:tag v1.2.3`）。
+   - 若使用者在呼叫技能時明確提供版號（例如：`/antigravity-github-flow:github-flow:tag v1.2.3`）。
    - 直接跳過後續的 SemVer 分析，使用指令 `git tag <手動版號>` 在最新節點打上標籤，並提示使用者推播（`git push --tags`），結束流程。
 
 3. 第三步：找出未標籤的合併節點
@@ -61,4 +61,4 @@ description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的�
 
 6. 第六步：執行標記與推播提示
    - 對於每個新版號，執行 `git tag <版號> <合併節點的 hash>`。
-   - 執行完成後，向使用者總結打上的 Tag，並從技能列表中讀取並執行 `antigravity-github-flow:push`（或 `push`）技能，將標籤同步至遠端。
+   - 執行完成後，向使用者總結打上的 Tag，並從技能列表中讀取並執行 `antigravity-github-flow:github-flow:push`（或 `push`）技能，將標籤同步至遠端。

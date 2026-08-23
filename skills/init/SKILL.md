@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:init
-description: 一鍵為全新專案搭建 GitHub Flow 標準的單一 main 主分支架構。當使用者輸入 /antigravity-github-flow:init 時觸發。
+name: antigravity-github-flow:github-flow:init
+description: 一鍵為全新專案搭建 GitHub Flow 標準的單一 main 主分支架構。當使用者輸入 /antigravity-github-flow:github-flow:init 時觸發。
 ---
 
 # GitHub Flow 專案初始化（Init）
@@ -9,7 +9,7 @@ description: 一鍵為全新專案搭建 GitHub Flow 標準的單一 main 主分
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:init`。
+1. 當使用者輸入 `/antigravity-github-flow:github-flow:init`。
 2. 當使用者要求「初始化專案」、「設定 GitHub Flow」、「建立 main 分支」時。
 
 ## 執行的實作步驟

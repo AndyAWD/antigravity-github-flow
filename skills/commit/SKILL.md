@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:commit
-description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 的 author 與 committer 都將強制加上 Google Antigravity 共同作者簽名。當使用者輸入 /antigravity-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
+name: antigravity-github-flow:github-flow:commit
+description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 的 author 與 committer 都將強制加上 Google Antigravity 共同作者簽名。當使用者輸入 /antigravity-github-flow:github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
 ---
 
 # 慣例式提交與 GitHub Flow 規範
@@ -54,7 +54,7 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:commit`。
+1. 當使用者輸入 `/antigravity-github-flow:github-flow:commit`。
 2. 當使用者提及「幫我 commit」、「幫我提交」、「整理提交」、「拆 commit」時。
 
 ## 互動與分支確認規則（ask_question）
@@ -83,7 +83,7 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 
 ## 執行的 8 個步驟
 
-重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `antigravity-github-flow:commit`（或 `commit`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/analyze.js`），絕不可使用相對路徑。
+重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `antigravity-github-flow:github-flow:commit`（或 `commit`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/analyze.js`），絕不可使用相對路徑。
 
 1. 第一步：確認當前分支。若在 `main` 或 `master`，則執行上述 `ask_question` 流程。
 2. 第二步：執行 `git ls-files --others --exclude-standard` 檢查是否有未追蹤的新檔案。
