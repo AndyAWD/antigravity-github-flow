@@ -1,5 +1,5 @@
 ---
-name: merge
+name: antigravity-github-flow:merge
 description: 依照 GitHub Flow 規則執行分支合併至 main 主分支。當使用者輸入 /antigravity-github-flow:merge 時觸發。
 ---
 
@@ -41,7 +41,7 @@ description: 依照 GitHub Flow 規則執行分支合併至 main 主分支。當
    }
    ```
 
-   - 若選擇建立 Pull Request：從技能列表中讀取並執行 `github-pr` 技能。
+   - 若選擇建立 Pull Request：從技能列表中讀取並執行 `antigravity-github-flow:github-pr`（或 `github-pr`）技能。
    - 若選擇本地合併：
      1. 切換至主分支（`git checkout main`）。
      2. 若主分支有遠端追蹤，先執行 `git pull --ff-only` 確保主分支為最新狀態。

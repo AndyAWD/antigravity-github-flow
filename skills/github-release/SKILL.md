@@ -1,5 +1,5 @@
 ---
-name: github-release
+name: antigravity-github-flow:github-release
 description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文雙語 Changelog。當使用者輸入 /antigravity-github-flow:github-release 時觸發。
 ---
 

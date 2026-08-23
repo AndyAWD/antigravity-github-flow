@@ -1,5 +1,5 @@
 ---
-name: init
+name: antigravity-github-flow:init
 description: 一鍵為全新專案搭建 GitHub Flow 標準的單一 main 主分支架構。當使用者輸入 /antigravity-github-flow:init 時觸發。
 ---
 

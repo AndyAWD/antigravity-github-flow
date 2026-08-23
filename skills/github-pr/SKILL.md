@@ -1,5 +1,5 @@
 ---
-name: github-pr
+name: antigravity-github-flow:github-pr
 description: 建立 Pull Request。允許從任何非 main 分支發起到 main 主分支，且 PR 內容自動產生繁體中文標題與描述。當使用者輸入 /antigravity-github-flow:github-pr 時觸發。
 ---
 

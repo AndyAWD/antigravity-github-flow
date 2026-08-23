@@ -1,5 +1,5 @@
 ---
-name: release
+name: antigravity-github-flow:release
 description: 依照 GitHub Flow 規範建立發布準備分支，並具備跨平台智慧版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /antigravity-github-flow:release 時觸發。
 ---
 

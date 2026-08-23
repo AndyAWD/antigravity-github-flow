@@ -1,5 +1,5 @@
 ---
-name: auto-next
+name: antigravity-github-flow:auto-next
 description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自動分析專案當前狀態，並決定下一步最適合的 GitHub Flow 操作（如初始化、提交、推播、發起 PR 或發布），並主動引導。
 ---
 
@@ -19,23 +19,23 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
 
 2. 階段一：基礎建設（Infrastructure）
    - 條件：執行 `git status` 失敗（代表沒有 `.git` 目錄），或是缺少 `main` 主分支。
-   - 行動：向使用者說明「目前專案還沒設定好版本控制」，接著從技能列表中讀取並執行 `init` 技能。
+   - 行動：向使用者說明「目前專案還沒設定好版本控制」，接著從技能列表中讀取並執行 `antigravity-github-flow:init`（或 `init`）技能。
 
 3. 階段二：保護工作進度（Save Progress）
    - 條件：工作區有修改、新增或刪除的檔案。
-   - 行動：向使用者說明「發現您有寫好的新程式碼，我先幫您把進度存起來！」，接著從技能列表中讀取並執行 `commit` 技能。
+   - 行動：向使用者說明「發現您有寫好的新程式碼，我先幫您把進度存起來！」，接著從技能列表中讀取並執行 `antigravity-github-flow:commit`（或 `commit`）技能。
 
 4. 階段三：同步與協作（Sync）
    - 條件：工作區乾淨，但本地分支落後遠端（behind remote）。
    - 行動：向使用者說明「發現雲端有新進度，先幫您同步更新下來！」，並執行 `git pull` 同步。
    - 條件：工作區乾淨，但本地分支超前遠端（ahead of remote），或是遠端尚未建立該分支。
-   - 行動：向使用者說明「您的程式碼已經存好了，現在幫您備份到雲端！」，接著從技能列表中讀取並執行 `push` 技能。
+   - 行動：向使用者說明「您的程式碼已經存好了，現在幫您備份到雲端！」，接著從技能列表中讀取並執行 `antigravity-github-flow:push`（或 `push`）技能。
 
 5. 階段四：流程推進（Flow Progression）
    - 條件：目前在非 main 的工作分支（如 feature/*, fix/* 等），工作區乾淨且已推送到遠端。
-   - 行動：代表開發或修復告一段落，向使用者說明即將發起審查，並從技能列表中讀取並執行 `github-pr` 技能（或依使用者選擇執行 `merge`）。
+   - 行動：代表開發或修復告一段落，向使用者說明即將發起審查，並從技能列表中讀取並執行 `antigravity-github-flow:github-pr`（或 `github-pr`）技能（或依使用者選擇執行 `antigravity-github-flow:merge` 技能）。
    - 條件：目前在 `main` 或 `master` 主分支，且有最新合併紀錄尚未打標籤（Tag）。
-   - 行動：代表剛完成新版本整併，讀取並執行 `tag` 技能，接著建議執行 `github-release`。
+   - 行動：代表剛完成新版本整併，讀取並執行 `antigravity-github-flow:tag`（或 `tag`）技能，接著建議執行 `antigravity-github-flow:github-release`。
 
 6. 階段五：迷航求助（Fallback）
    - 條件：目前狀態非常健康（在 `main` 分支且一切同步乾淨），沒有明顯的下一步。
@@ -44,7 +44,7 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
      - 選項：
        1. (Recommended) 開發新功能（從 main 切出 feature 分支）
        2. 修復 Bug（從 main 切出 fix 分支）
-       3. 準備發布新版本（執行 release 技能）
+       3. 準備發布新版本（執行 antigravity-github-flow:release 技能）
        4. 從雲端更新程式碼（執行 git pull）
 
 ## 溝通準則
