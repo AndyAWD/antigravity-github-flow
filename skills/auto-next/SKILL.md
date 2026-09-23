@@ -13,9 +13,9 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
 
 請依序由高至低檢查以下狀態，只要符合條件，就直接執行對應的行動。請在背景安靜檢查，不要將生硬的指令輸出給使用者，只需用親切白話文說明即將執行的動作。
 
-1. 階段零：遠端狀態更新（Remote Fetch）
+1. 階段零：全域遠端狀態擷取與多分支快轉（Remote Fetch & Multi-branch Fast-forward）
    - 條件：若當前專案為 Git 儲存庫且設定有遠端儲存庫（`git remote` 有輸出）。
-   - 行動：在背景執行 `git fetch --all --prune --tags`，確保本地取得遠端最新進度與標籤資訊。
+   - 行動：在背景執行 `antigravity-github-flow:agy-github-flow:fetch`（或 `fetch`）技能（執行 `scripts/fetch.js`）。這將自動執行 `git fetch --all --prune --tags`，並在背景嘗試將所有非當前所在之本地分支安全快轉更新至最新遠端節點（遵循「不行的話就算了」原則），同時獲取當前分支之落後與超前狀態。
 
 2. 階段一：基礎建設（Infrastructure）
    - 條件：執行 `git status` 失敗（代表沒有 `.git` 目錄），或是缺少 `main` 主分支。
@@ -26,8 +26,8 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
    - 行動：向使用者說明「發現您有寫好的新程式碼，我先幫您把進度存起來！」，接著從技能列表中讀取並執行 `antigravity-github-flow:agy-github-flow:commit`（或 `commit`）技能。
 
 4. 階段三：同步與協作（Sync）
-   - 條件：工作區乾淨，但本地分支落後遠端（behind remote）。
-   - 行動：向使用者說明「發現雲端有新進度，先幫您同步更新下來！」，並執行 `git pull` 同步。
+   - 條件：工作區乾淨，但本地分支落後遠端（behind remote），或與遠端雙向分叉（diverged）。
+   - 行動：向使用者說明「發現雲端有新進度，先幫您同步更新下來！」，接著從技能列表中讀取並執行 `antigravity-github-flow:agy-github-flow:pull`（或 `pull`）技能。若遇到任何無法直接拉取的情況，`pull` 技能會自動啟動 `ask_question` 決策選單協助使用者排解。
    - 條件：工作區乾淨，但本地分支超前遠端（ahead of remote），或是遠端尚未建立該分支。
    - 行動：向使用者說明「您的程式碼已經存好了，現在幫您備份到雲端！」，接著從技能列表中讀取並執行 `antigravity-github-flow:agy-github-flow:push`（或 `push`）技能。
 
@@ -45,7 +45,7 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
        1. (Recommended) 開發新功能（從 main 切出 feature 分支）
        2. 修復 Bug（從 main 切出 fix 分支）
        3. 準備發布新版本（執行 antigravity-github-flow:agy-github-flow:release 技能）
-       4. 從雲端更新程式碼（執行 git pull）
+       4. 從雲端擷取並拉取最新程式碼（執行 pull 技能）
 
 ## 溝通準則
 

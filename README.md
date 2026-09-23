@@ -124,7 +124,27 @@
   1. 推送前先 fetch 檢查遠端狀態。
   2. 若落後則提醒同步；若無落後則執行 `git push -u origin HEAD --follow-tags`。
 
-### 6. 建立發布準備分支（Release）
+### 6. 遠端狀態擷取（Fetch）
+```text
+/antigravity-github-flow:agy-github-flow:fetch
+```
+- 情境：擷取遠端最新變更與標籤，並在本地多軌快轉更新所有非當前分支。
+- 運作邏輯：
+  1. 執行 `git fetch --all --prune --tags` 下載全域最新物件。
+  2. 掃描所有本地分支，針對非當前分支在背景進行本地快轉更新。
+  3. 若遇分叉、衝突或無遠端分支則貫徹「不行的話就算了」安全略過，絕不影響當前工作區。
+
+### 7. 遠端拉取（Pull）
+```text
+/antigravity-github-flow:agy-github-flow:pull
+```
+- 情境：整合遠端最新進度至當前工作分支。
+- 運作邏輯：
+  1. 強制自動先執行 fetch，確保全域資料與非當前分支為最新狀態。
+  2. 針對當前分支進行安全快轉拉取（`git pull --ff-only`）。
+  3. 若因工作區未提交、分叉、衝突或未追蹤上游等原因無法直接拉取，自動啟動 `ask_question` 決策選單提供下一步排解建議。
+
+### 8. 建立發布準備分支（Release）
 ```text
 /antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
 ```
@@ -135,7 +155,7 @@
   3. 跨平台智慧搜尋並更新 `package.json`、`build.gradle`、`pyproject.toml` 等檔案中的版號。
   4. 自動建立版號更新提交。
 
-### 7. 自動版號標記（Tag）
+### 9. 自動版號標記（Tag）
 ```text
 /antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
 ```
@@ -145,7 +165,7 @@
   2. 依據 SemVer 規範分析合併節點並加算版號。
   3. 打上 `vX.Y.Z` 標籤並引導推播至遠端。
 
-### 8. 建立 GitHub Release
+### 10. 建立 GitHub Release
 ```text
 /antigravity-github-flow:agy-github-flow:github-release
 ```
@@ -155,7 +175,7 @@
   2. 自動產生中英文雙語的發布變更清單（Changelog）。
   3. 透過 `gh release create` 自動發布至 GitHub。
 
-### 9. 專案初始化（Init）
+### 11. 專案初始化（Init）
 ```text
 /antigravity-github-flow:agy-github-flow:init
 ```
