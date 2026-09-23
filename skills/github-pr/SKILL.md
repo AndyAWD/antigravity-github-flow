@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:github-flow:github-pr
-description: 建立 Pull Request。允許從任何非 main 分支發起到 main 主分支，且 PR 內容自動產生繁體中文標題與描述。當使用者輸入 /antigravity-github-flow:github-flow:github-pr 時觸發。
+name: antigravity-github-flow:agy-github-flow:github-pr
+description: 建立 Pull Request。允許從任何非 main 分支發起到 main 主分支，且 PR 內容自動產生繁體中文標題與描述。當使用者輸入 /antigravity-github-flow:agy-github-flow:github-pr 時觸發。
 ---
 
 # 建立拉取請求（Pull Request）
@@ -9,7 +9,7 @@ description: 建立 Pull Request。允許從任何非 main 分支發起到 main 
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:github-flow:github-pr`。
+1. 當使用者輸入 `/antigravity-github-flow:agy-github-flow:github-pr`。
 2. 當使用者提及「發 PR」、「建立 Pull Request」、「發起程式碼審查」時。
 
 ## 執行的實作步驟
@@ -33,4 +33,4 @@ description: 建立 Pull Request。允許從任何非 main 分支發起到 main 
    - 情境 A（已安裝且已登入）：
      執行指令：`gh pr create --title "<繁體中文標題>" --body "<繁體中文描述>" --base main`，自動建立 Pull Request 並將連結回報給使用者。
    - 情境 B（未安裝或未登入）：
-     停止後續動作，並提示使用者：「請先安裝 GitHub CLI（gh）並執行 `gh auth login` 完成登入後，再重新執行 `/antigravity-github-flow:github-flow:github-pr`。」
+     停止後續動作，並提示使用者：「請先安裝 GitHub CLI（gh）並執行 `gh auth login` 完成登入後，再重新執行 `/antigravity-github-flow:agy-github-flow:github-pr`。」

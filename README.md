@@ -79,14 +79,14 @@
 
 ### 1. 智慧導航（Auto Next）
 ```text
-/antigravity-github-flow:github-flow:auto-next
+/antigravity-github-flow:agy-github-flow:auto-next
 ```
 - 情境：不知下一步該做什麼，或想讓 AI 自動推進工作流程。
 - 運作邏輯：自動檢查工作區是否有未儲存檔案、是否落後遠端、目前分支狀態，並自動依序執行提交、同步、發布 PR 或打 Tag。
 
 ### 2. 慣例式提交（Commit）
 ```text
-/antigravity-github-flow:github-flow:commit
+/antigravity-github-flow:agy-github-flow:commit
 ```
 - 情境：開發告一段落，準備將變更寫入版本歷史。
 - 運作邏輯：
@@ -97,7 +97,7 @@
 
 ### 3. 分支合併（Merge）
 ```text
-/antigravity-github-flow:github-flow:merge
+/antigravity-github-flow:agy-github-flow:merge
 ```
 - 情境：功能或修復開發完成，準備整併回 main 主分支。
 - 運作邏輯：
@@ -107,7 +107,7 @@
 
 ### 4. 發布拉取請求（GitHub PR）
 ```text
-/antigravity-github-flow:github-flow:github-pr
+/antigravity-github-flow:agy-github-flow:github-pr
 ```
 - 情境：準備發起程式碼審查（Code Review）並將變更合併至 main。
 - 運作邏輯：
@@ -117,7 +117,7 @@
 
 ### 5. 遠端推播（Push）
 ```text
-/antigravity-github-flow:github-flow:push
+/antigravity-github-flow:agy-github-flow:push
 ```
 - 情境：將本地端變更與標籤同步上傳至遠端儲存庫。
 - 運作邏輯：
@@ -126,7 +126,7 @@
 
 ### 6. 建立發布準備分支（Release）
 ```text
-/antigravity-github-flow:github-flow:release [vX.Y.Z]
+/antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
 ```
 - 情境：準備發布新版本並更新專案版號。
 - 運作邏輯：
@@ -137,7 +137,7 @@
 
 ### 7. 自動版號標記（Tag）
 ```text
-/antigravity-github-flow:github-flow:tag [vX.Y.Z]
+/antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
 ```
 - 情境：在 main 主分支完成合併後，為節點打上正式版本標籤。
 - 運作邏輯：
@@ -147,7 +147,7 @@
 
 ### 8. 建立 GitHub Release
 ```text
-/antigravity-github-flow:github-flow:github-release
+/antigravity-github-flow:agy-github-flow:github-release
 ```
 - 情境：在 GitHub 儲存庫上建立正式發布說明與 Release。
 - 運作邏輯：
@@ -157,7 +157,7 @@
 
 ### 9. 專案初始化（Init）
 ```text
-/antigravity-github-flow:github-flow:init
+/antigravity-github-flow:agy-github-flow:init
 ```
 - 情境：全新專案一鍵搭建 GitHub Flow 單一主分支基礎架構。
 - 運作邏輯：

@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:github-flow:push
-description: 執行 git push 將本地變更推送到遠端儲存庫。當使用者輸入 /antigravity-github-flow:github-flow:push 時觸發。
+name: antigravity-github-flow:agy-github-flow:push
+description: 執行 git push 將本地變更推送到遠端儲存庫。當使用者輸入 /antigravity-github-flow:agy-github-flow:push 時觸發。
 ---
 
 # 遠端推播（Push）
@@ -9,7 +9,7 @@ description: 執行 git push 將本地變更推送到遠端儲存庫。當使用
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:github-flow:push`。
+1. 當使用者輸入 `/antigravity-github-flow:agy-github-flow:push`。
 2. 當使用者提及「幫我 push」、「推送到 GitHub」、「備份到遠端」時。
 
 ## 執行的實作步驟

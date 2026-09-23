@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:github-flow:github-release
-description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文雙語 Changelog。當使用者輸入 /antigravity-github-flow:github-flow:github-release 時觸發。
+name: antigravity-github-flow:agy-github-flow:github-release
+description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文雙語 Changelog。當使用者輸入 /antigravity-github-flow:agy-github-flow:github-release 時觸發。
 ---
 
 # 建立 GitHub Release
@@ -9,7 +9,7 @@ description: 建立 GitHub Release。自動擷取 commit 紀錄產生中英文�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:github-flow:github-release`。
+1. 當使用者輸入 `/antigravity-github-flow:agy-github-flow:github-release`。
 2. 當使用者提及「幫我建立 release」、「發布版本」時。
 
 ## 執行的實作步驟

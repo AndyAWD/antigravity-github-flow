@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:github-flow:release
-description: 依照 GitHub Flow 規範建立發布準備分支，並具備跨平台智慧版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /antigravity-github-flow:github-flow:release 時觸發。
+name: antigravity-github-flow:agy-github-flow:release
+description: 依照 GitHub Flow 規範建立發布準備分支，並具備跨平台智慧版號更新能力（支援 package.json, build.gradle 等多種格式）。當使用者輸入 /antigravity-github-flow:agy-github-flow:release 時觸發。
 ---
 
 # 建立發布準備分支（Start Release）
@@ -9,7 +9,7 @@ description: 依照 GitHub Flow 規範建立發布準備分支，並具備跨平
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:github-flow:release [vX.Y.Z]`。
+1. 當使用者輸入 `/antigravity-github-flow:agy-github-flow:release [vX.Y.Z]`。
 2. 當使用者要求「開啟發布分支」、「準備 release」、「更新版本號」時。
 
 ## 執行的實作步驟
@@ -20,7 +20,7 @@ description: 依照 GitHub Flow 規範建立發布準備分支，並具備跨平
    - 若遠端存在 `origin/main`，先執行 `git pull --ff-only` 確保主分支處於最新狀態。
 
 2. 第二步：判斷與確認版號
-   - 若使用者在指令中指定了版號（如 `/antigravity-github-flow:github-flow:release v1.2.0`），則直接使用該版號。
+   - 若使用者在指令中指定了版號（如 `/antigravity-github-flow:agy-github-flow:release v1.2.0`），則直接使用該版號。
    - 若無指定，使用 `git log` 分析自上一個 Tag 以來的新功能與修復，推算下一個合理的語意化版本（SemVer: vX.Y.Z）版號。
 
 3. 第三步：建立發布分支
