@@ -1,186 +1,238 @@
 # antigravity-github-flow
 
-一個專為 Google Antigravity（AGY）設計的外掛程式（Plugin），提供極簡、敏捷且符合 GitHub Flow 標準的自動化工作流程。
+English | [繁體中文](README.zh-TW.md)
 
-全面支援 Antigravity 的三大核心平台：Antigravity 命令列介面（CLI）（agy）、Antigravity 整合開發環境（IDE）以及 Antigravity 2.0 桌面應用程式。
+An Antigravity plugin for Google Antigravity (AGY), providing a streamlined, agile, and automated GitHub Flow pipeline.
 
-本外掛程式依據慣例式提交（Conventional Commits）v1.0.0 繁體中文規範自動產生精準的 Git Commit，並以單一 main 主分支為核心，串聯分支建立、拉取請求（Pull Request / PR）發布、版本標記與遠端推播等完整生命週期。
+Comprehensive support across the three core platforms of Google Antigravity: Antigravity Command-Line Interface (CLI) (`agy`), Antigravity Integrated Development Environment (IDE), and Antigravity 2.0 Desktop Application.
 
-## 什麼是 antigravity-github-flow 的特色？
+This plugin automatically produces precise Git commits following the Conventional Commits v1.0.0 specification, centered around a single `main` branch, orchestrating branch creation, Pull Request (PR) publication, bilingual GitHub Release notes, and automated bilingual documentation generation.
 
-1. 全平台無縫支援：相容於 CLI 終端機、IDE 側邊欄對話框以及 2.0 桌面版的對話畫布（Chat Canvas）。
-2. 自動模式與智慧導航：專為不熟悉 Git 的開發者設計，AI 自動分析目前專案狀態，主動引導並推進到下一個合理的 GitHub Flow 步驟。
-3. 嚴格遵循慣例式提交規範：內建繁體中文提示詞，確保 `<type>[scope]: <描述>` 格式統一，避免 AI 產生幻覺。
-4. 多任務自動拆分：自動分析工作區中的多個不同修改，並聰明地拆分為多個獨立的 Commit。
-5. 極簡單一主幹模型：以 main 分支為核心，任何新功能、修復或發布皆從 main 切出分支，完成後透過 PR 或本地合併回 main，乾淨俐落。
-6. Antigravity 專屬共同作者簽名：所有自動建立的 Commit 末端皆會加上 Google Antigravity 共同作者簽名，清楚保留 AI 協作足跡。
+## Installation
 
-## 如何安裝與啟用？
+Install the plugin globally using the Antigravity Command-Line Interface (CLI):
 
-本外掛程式支援全域安裝（所有專案共用）與專案工作區安裝（團隊共用）：
+```bash
+agy plugin install https://github.com/AndyAWD/antigravity-github-flow
+```
 
-### 方式一：全域安裝（推薦）
+## Key Features
 
-全域安裝後，Antigravity CLI、Antigravity 2.0 與 Antigravity IDE 均能自動辨識並載入本外掛程式的所有技能（Skills）。
+1. **Seamless Cross-Platform Compatibility**: Fully compatible with Antigravity CLI terminal, IDE sidebar chat, and Antigravity 2.0 Chat Canvas.
+2. **Auto Navigation & Flow Progression**: Designed for developers of all skill levels, AI automatically analyzes project state and advances to the next logical GitHub Flow step.
+3. **Strict Conventional Commits Compliance**: Built-in prompt rules ensure consistent `<type>[scope]: <description>` structure and eliminate model hallucinations.
+4. **Multi-Task Auto Splitting**: Automatically splits unrelated working tree changes into separate logical commits.
+5. **Streamlined Single-Trunk Model**: Centered around `main`; feature, bugfix, or release branches branch off `main` and merge back cleanly via PR or local merge.
+6. **Standardized Bilingual Documentation & Releases**: Integrated multi-language PR templates, bilingual GitHub Release changelogs, and automated README generation.
+7. **Dedicated Co-Author Attribution**: Every automated commit includes Google Antigravity co-author attribution.
 
-1. 透過命令列介面（CLI）安裝：
-   ```bash
-   agy plugin install https://github.com/AndyAWD/antigravity-github-flow
-   ```
+## Plugin Management
 
-2. 透過 Git 手動複製到全域目錄：
-   - Linux / macOS：
-     ```bash
-     git clone https://github.com/AndyAWD/antigravity-github-flow.git ~/.gemini/config/plugins/antigravity-github-flow
-     ```
-   - Windows（PowerShell）：
-     ```powershell
-     git clone https://github.com/AndyAWD/antigravity-github-flow.git "$HOME\.gemini\config\plugins\antigravity-github-flow"
-     ```
+  • List installed plugins:
+    ```bash
+    agy plugin list
+    ```
 
-### 方式二：專案工作區安裝（Workspace / 團隊共用）
+  • Enable this plugin:
+    ```bash
+    agy plugin enable antigravity-github-flow
+    ```
 
-若希望將本外掛程式限定於單一專案：
+  • Disable this plugin:
+    ```bash
+    agy plugin disable antigravity-github-flow
+    ```
 
-1. 目錄結構放置：
-   將本外掛程式資料夾放置於專案根目錄的 `.agents/plugins/antigravity-github-flow/`：
-   ```text
-   <專案根目錄>/
-   └── .agents/
-       └── plugins/
-           └── antigravity-github-flow/
-               ├── plugin.json
-               └── skills/
-   ```
+  • Uninstall this plugin:
+    ```bash
+    agy plugin uninstall antigravity-github-flow
+    ```
 
-2. 透過 plugins.json 註冊（選用）：
-   在專案的 `.agents/plugins.json` 中宣告路徑：
-   ```json
-   {
-     "entries": [
-       { "path": "path/to/antigravity-github-flow" }
-     ]
-   }
-   ```
+> In Antigravity 2.0, you can also inspect and verify real-time loading status in the **Skills & Customizations** panel in the left sidebar.
 
-### 如何管理與切換外掛程式？
+## Directory Structure
 
-您可透過 Antigravity CLI 指令管理狀態：
+```text
+antigravity-github-flow/
+├── .github/
+│   └── PULL_REQUEST_TEMPLATE.md
+├── plugin.json
+├── package.json
+├── LICENSE
+├── README.md
+├── README.zh-TW.md
+├── templates/
+│   ├── README.template.md
+│   ├── README.zh-TW.template.md
+│   ├── RELEASE.template.md
+│   ├── PULL_REQUEST_TEMPLATE.md
+│   ├── PULL_REQUEST_TEMPLATE.en.md
+│   └── PULL_REQUEST_TEMPLATE.bilingual.md
+└── skills/
+    ├── auto-next/
+    ├── commit/
+    ├── fetch/
+    ├── github-pr/
+    ├── github-release/
+    ├── init/
+    ├── merge/
+    ├── pull/
+    ├── push/
+    ├── readme/
+    ├── release/
+    └── tag/
+```
 
-1. 列出已安裝外掛：`agy plugin list`
-2. 啟用外掛：`agy plugin enable antigravity-github-flow`
-3. 停用外掛：`agy plugin disable antigravity-github-flow`
-4. 移除外掛：`agy plugin uninstall antigravity-github-flow`
-5. 在 Antigravity 2.0 左側欄的 Skills & Customizations 面板中，可即時檢視載入狀態。
+## Commands and Skills
 
-## 有哪些核心技能與指令？
+Once installed, trigger capabilities using natural language prompts or dedicated slash commands:
 
-安裝完成後，可以在任何 AGY 介面透過語意對話或輸入對應的斜線指令（Slash Commands）觸發：
+### 1. Auto Navigation (Auto Next)
 
-### 1. 智慧導航（Auto Next）
 ```text
 /antigravity-github-flow:agy-github-flow:auto-next
 ```
-- 情境：不知下一步該做什麼，或想讓 AI 自動推進工作流程。
-- 運作邏輯：自動檢查工作區是否有未儲存檔案、是否落後遠端、目前分支狀態，並自動依序執行提交、同步、發布 PR 或打 Tag。
 
-### 2. 慣例式提交（Commit）
+- **When to Use**: When unsure of the next step, or wishing to automate the GitHub Flow progression.
+- **How It Works**:
+  1. Executes background remote fetch and safely fast-forwards non-current local branches.
+  2. Verifies VCS initialization and `main` branch presence.
+  3. Checks working tree changes and automatically commits and pushes.
+  4. Automatically advances PR creation, merge, or release based on current working branch context.
+
+### 2. Conventional Commits (Commit)
+
 ```text
 /antigravity-github-flow:agy-github-flow:commit
 ```
-- 情境：開發告一段落，準備將變更寫入版本歷史。
-- 運作邏輯：
-  1. 檢查未追蹤檔案並進行安全確認。
-  2. 分析變更並自動拆分獨立任務。
-  3. 若在 main 主分支，會主動詢問要切出新分支還是直接提交到 main。
-  4. 依據規範產生繁體中文描述並附上共同作者簽名。
 
-### 3. 分支合併（Merge）
+- **When to Use**: When changes are ready to be committed to version history.
+- **How It Works**:
+  1. Stages changes and performs safety checks.
+  2. Splits multi-task changes into discrete logical commits.
+  3. Guides switching off `main` if on trunk, or commits directly if intended.
+  4. Generates Conventional Commit messages with Google Antigravity co-author trailer.
+
+### 3. Branch Merge (Merge)
+
 ```text
 /antigravity-github-flow:agy-github-flow:merge
 ```
-- 情境：功能或修復開發完成，準備整併回 main 主分支。
-- 運作邏輯：
-  1. 詢問使用者偏好發起 GitHub Pull Request 或在本地直接合併。
-  2. 本地合併自動切換至 main、同步最新遠端進度後執行 `--no-ff` 合併。
-  3. 合併完成後主動詢問是否刪除原始分支以保持儲存庫整潔。
 
-### 4. 發布拉取請求（GitHub PR）
+- **When to Use**: When feature or bugfix branch is complete and ready to merge into `main`.
+- **How It Works**:
+  1. Asks user preference between opening a GitHub PR or merging locally.
+  2. For local merge, checks out `main`, syncs remote, and executes `--no-ff` merge.
+  3. Prompts whether to delete the original working branch upon completion.
+
+### 4. Open Pull Request (GitHub PR)
+
 ```text
 /antigravity-github-flow:agy-github-flow:github-pr
 ```
-- 情境：準備發起程式碼審查（Code Review）並將變更合併至 main。
-- 運作邏輯：
-  1. 自動檢查工作分支並確保遠端進度最新。
-  2. 自動總結近期 Commit 紀錄並以繁體中文撰寫標題與內容。
-  3. 透過 `gh pr create` 自動在 GitHub 上建立 PR。
 
-### 5. 遠端推播（Push）
+- **When to Use**: When submitting a pull request to `main` for code review.
+- **How It Works**:
+  1. Verifies current branch is not `main` and is pushed to remote.
+  2. Interactively asks for preferred PR language via `ask_question` (Traditional Chinese, English, or Bilingual).
+  3. Analyzes commit diffs to extract purpose, summary, change type, and affected components (no emojis).
+  4. Reviews PR and publishes via GitHub CLI (`gh pr create`).
+
+### 5. Remote Push (Push)
+
 ```text
 /antigravity-github-flow:agy-github-flow:push
 ```
-- 情境：將本地端變更與標籤同步上傳至遠端儲存庫。
-- 運作邏輯：
-  1. 推送前先 fetch 檢查遠端狀態。
-  2. 若落後則提醒同步；若無落後則執行 `git push -u origin HEAD --follow-tags`。
 
-### 6. 遠端狀態擷取（Fetch）
+- **When to Use**: When pushing local commits and tags to remote repository.
+- **How It Works**:
+  1. Runs fetch first to inspect remote state.
+  2. Executes `git push -u origin HEAD --follow-tags` after confirming branch is up to date.
+
+### 6. Remote Fetch (Fetch)
+
 ```text
 /antigravity-github-flow:agy-github-flow:fetch
 ```
-- 情境：擷取遠端最新變更與標籤，並在本地多軌快轉更新所有非當前分支。
-- 運作邏輯：
-  1. 執行 `git fetch --all --prune --tags` 下載全域最新物件。
-  2. 掃描所有本地分支，針對非當前分支在背景進行本地快轉更新。
-  3. 若遇分叉、衝突或無遠端分支則貫徹「不行的話就算了」安全略過，絕不影響當前工作區。
 
-### 7. 遠端拉取（Pull）
+- **When to Use**: When fetching latest remote refs and fast-forwarding non-current local branches.
+- **How It Works**:
+  1. Runs `git fetch --all --prune --tags` to download remote objects.
+  2. Safely fast-forwards all non-current local branches.
+  3. Skips diverged branches without affecting current workspace.
+
+### 7. Remote Pull (Pull)
+
 ```text
 /antigravity-github-flow:agy-github-flow:pull
 ```
-- 情境：整合遠端最新進度至當前工作分支。
-- 運作邏輯：
-  1. 強制自動先執行 fetch，確保全域資料與非當前分支為最新狀態。
-  2. 針對當前分支進行安全快轉拉取（`git pull --ff-only`）。
-  3. 若因工作區未提交、分叉、衝突或未追蹤上游等原因無法直接拉取，自動啟動 `ask_question` 決策選單提供下一步排解建議。
 
-### 8. 建立發布準備分支（Release）
+- **When to Use**: When synchronizing remote commits into current working branch.
+- **How It Works**:
+  1. Mandates preliminary fetch for global state synchronization.
+  2. Performs safe fast-forward pull (`git pull --ff-only`).
+  3. Provides `ask_question` interactive troubleshooting menu if dirty or diverged.
+
+### 8. Release Branch (Release)
+
 ```text
 /antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
 ```
-- 情境：準備發布新版本並更新專案版號。
-- 運作邏輯：
-  1. 分析提交紀錄推算語意化版本號（SemVer）。
-  2. 從 main 切出 `release/<版號>` 分支。
-  3. 跨平台智慧搜尋並更新 `package.json`、`build.gradle`、`pyproject.toml` 等檔案中的版號。
-  4. 自動建立版號更新提交。
 
-### 9. 自動版號標記（Tag）
+- **When to Use**: When preparing a new release and bumping version numbers.
+- **How It Works**:
+  1. Calculates SemVer version bump from commit history.
+  2. Creates and checks out `release/<version>` branch from `main`.
+  3. Updates version strings across project manifests (`package.json`, etc.) and commits.
+
+### 9. Version Tag (Tag)
+
 ```text
 /antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
 ```
-- 情境：在 main 主分支完成合併後，為節點打上正式版本標籤。
-- 運作邏輯：
-  1. 嚴格限制在 main 或 master 主分支執行。
-  2. 依據 SemVer 規範分析合併節點並加算版號。
-  3. 打上 `vX.Y.Z` 標籤並引導推播至遠端。
 
-### 10. 建立 GitHub Release
+- **When to Use**: When tagging a released commit on `main`.
+- **How It Works**:
+  1. Restricts execution strictly to `main` or `master`.
+  2. Determines next version tag according to SemVer rules.
+  3. Tags commit with `vX.Y.Z` and assists in remote push.
+
+### 10. GitHub Release (Release Notes)
+
 ```text
 /antigravity-github-flow:agy-github-flow:github-release
 ```
-- 情境：在 GitHub 儲存庫上建立正式發布說明與 Release。
-- 運作邏輯：
-  1. 自動擷取上一個 Tag 到目前節點的 Commit 紀錄。
-  2. 自動產生中英文雙語的發布變更清單（Changelog）。
-  3. 透過 `gh release create` 自動發布至 GitHub。
 
-### 11. 專案初始化（Init）
+- **When to Use**: When creating an official release on GitHub.
+- **How It Works**:
+  1. Confirms version tag and retrieves commits since previous tag.
+  2. Categorizes changes by commit type and produces bilingual changelog (no emojis) with compare link.
+  3. Reviews and publishes via GitHub CLI (`gh release create`).
+
+### 11. Scaffolding Init (Init)
+
 ```text
 /antigravity-github-flow:agy-github-flow:init
 ```
-- 情境：全新專案一鍵搭建 GitHub Flow 單一主分支基礎架構。
-- 運作邏輯：
-  1. 檢查或執行 `git init`。
-  2. 建立初始提交。
-  3. 確保主分支名稱為 `main` 並停留在 `main` 準備開始工作。
+
+- **When to Use**: When scaffolding GitHub Flow single-trunk structure for a new repository.
+- **How It Works**:
+  1. Initializes git repository if needed.
+  2. Creates initial commit.
+  3. Ensures branch is named `main` and stays checked out.
+
+### 12. Bilingual Documentation Generator (Readme)
+
+```text
+/antigravity-github-flow:agy-github-flow:readme
+```
+
+- **When to Use**: When creating or updating bilingual README files.
+- **How It Works**:
+  1. Parses manifests and `skills/` directory.
+  2. Extracts parameters and workflows.
+  3. Generates symmetric `README.md` (English) and `README.zh-TW.md` (Traditional Chinese).
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
