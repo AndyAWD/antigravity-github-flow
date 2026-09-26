@@ -51,8 +51,6 @@ agy plugin install https://github.com/AndyAWD/antigravity-github-flow
   agy plugin uninstall antigravity-github-flow
   ```
 
-> 在 Antigravity 2.0 左側欄的 **Skills & Customizations** 面板中，亦可即時檢視外掛載入狀態。
-
 ## 專案資料夾目錄
 
 ```text
@@ -100,7 +98,7 @@ antigravity-github-flow/
 - **運作流程**：
   1. 背景執行遠端狀態擷取（Fetch）並安全快轉非當前本地分支。
   2. 檢查專案是否已建立版本控制與 `main` 主分支。
-  3. 檢查工作區變更並自動進行提交（Commit）與遠端推播（Push）。
+  3. 檢查工作區變更並自動進行提交與遠端推播（Push）。
   4. 依工作分支狀態自動推進發布拉取請求、分支合併或建立發布分支。
 
 ### 2. 慣例式提交（Commit）
@@ -217,7 +215,7 @@ antigravity-github-flow/
 - **使用情境**：在 GitHub 儲存庫上建立正式發布說明時。
 - **運作流程**：
   1. 確認版本號與上一個標籤之間的提交歷史。
-  2. 依據慣例式提交分類，產生中英文雙語變更日誌（無表情符號）與比對連結。
+  2. 依據慣例式提交分類，產生中英文雙語變更日誌（Changelog）（無表情符號）與比對連結。
   3. 審查確認後透過 GitHub CLI（`gh release create`）正式發布。
 
 ### 11. 專案初始化（Init）

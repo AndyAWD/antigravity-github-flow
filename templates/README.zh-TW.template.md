@@ -47,8 +47,6 @@ agy plugin install {{GITHUB_REPO_URL}}
   agy plugin uninstall {{PROJECT_NAME}}
   ```
 
-> 在 Antigravity 2.0 左側欄的 **Skills & Customizations** 面板中，亦可即時檢視外掛載入狀態。
-
 ## 專案資料夾目錄
 
 ```text

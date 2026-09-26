@@ -47,8 +47,6 @@ agy plugin install {{GITHUB_REPO_URL}}
   agy plugin uninstall {{PROJECT_NAME}}
   ```
 
-> In Antigravity 2.0, you can also inspect and verify the real-time loading status in the **Skills & Customizations** panel in the left sidebar.
-
 ## Directory Structure
 
 ```text
