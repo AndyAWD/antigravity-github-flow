@@ -20,33 +20,36 @@ agy plugin install https://github.com/AndyAWD/antigravity-github-flow
 
 1. **Seamless Cross-Platform Compatibility**: Fully compatible with Antigravity CLI terminal, IDE sidebar chat, and Antigravity 2.0 Chat Canvas.
 2. **Auto Navigation & Flow Progression**: Designed for developers of all skill levels, AI automatically analyzes project state and advances to the next logical GitHub Flow step.
-3. **Strict Conventional Commits Compliance**: Built-in prompt rules ensure consistent `<type>[scope]: <description>` structure and eliminate model hallucinations.
-4. **Multi-Task Auto Splitting**: Automatically splits unrelated working tree changes into separate logical commits.
-5. **Streamlined Single-Trunk Model**: Centered around `main`; feature, bugfix, or release branches branch off `main` and merge back cleanly via PR or local merge.
-6. **Standardized Bilingual Documentation & Releases**: Integrated multi-language PR templates, bilingual GitHub Release changelogs, and automated README generation.
-7. **Dedicated Co-Author Attribution**: Every automated commit includes Google Antigravity co-author attribution.
+3. **Strict Conventional Commits & Auto Splitting**: Built-in rules ensure consistent `<type>[scope]: <description>` structure, automatically split unrelated changes into discrete commits, and attach Google Antigravity co-author attribution.
+4. **Streamlined Single-Trunk Model**: Centered around `main`; feature and bugfix branches branch off `main` and merge back cleanly via PR or safe local merge.
+5. **Standardized Bilingual Docs & Release Pipeline**: Integrated multi-language PR templates, bilingual GitHub Release changelogs, and automated bilingual README synchronization.
+6. **Safe Global Synchronization**: Built-in multi-branch background fast-forwarding and diagnostic decision trees balance operational efficiency with workspace safety.
 
 ## Plugin Management
 
-  • List installed plugins:
-    ```bash
-    agy plugin list
-    ```
+• List installed plugins:
 
-  • Enable this plugin:
-    ```bash
-    agy plugin enable antigravity-github-flow
-    ```
+  ```bash
+  agy plugin list
+  ```
 
-  • Disable this plugin:
-    ```bash
-    agy plugin disable antigravity-github-flow
-    ```
+• Enable this plugin:
 
-  • Uninstall this plugin:
-    ```bash
-    agy plugin uninstall antigravity-github-flow
-    ```
+  ```bash
+  agy plugin enable antigravity-github-flow
+  ```
+
+• Disable this plugin:
+
+  ```bash
+  agy plugin disable antigravity-github-flow
+  ```
+
+• Uninstall this plugin:
+
+  ```bash
+  agy plugin uninstall antigravity-github-flow
+  ```
 
 > In Antigravity 2.0, you can also inspect and verify real-time loading status in the **Skills & Customizations** panel in the left sidebar.
 
@@ -176,7 +179,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 8. Release Branch (Release)
 
 ```text
-/antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
+/antigravity-github-flow:agy-github-flow:release
 ```
 
 - **When to Use**: When preparing a new release and bumping version numbers.
@@ -184,11 +187,15 @@ Once installed, trigger capabilities using natural language prompts or dedicated
   1. Calculates SemVer version bump from commit history.
   2. Creates and checks out `release/<version>` branch from `main`.
   3. Updates version strings across project manifests (`package.json`, etc.) and commits.
+- **Parameters / Examples** (optional):
+```text
+/antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
+```
 
 ### 9. Version Tag (Tag)
 
 ```text
-/antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
+/antigravity-github-flow:agy-github-flow:tag
 ```
 
 - **When to Use**: When tagging a released commit on `main`.
@@ -196,6 +203,10 @@ Once installed, trigger capabilities using natural language prompts or dedicated
   1. Restricts execution strictly to `main` or `master`.
   2. Determines next version tag according to SemVer rules.
   3. Tags commit with `vX.Y.Z` and assists in remote push.
+- **Parameters / Examples** (optional):
+```text
+/antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
+```
 
 ### 10. GitHub Release (Release Notes)
 

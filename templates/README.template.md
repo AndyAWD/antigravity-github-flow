@@ -23,25 +23,29 @@ agy plugin install {{GITHUB_REPO_URL}}
 
 ## Plugin Management
 
-  • List installed plugins:
-    ```bash
-    agy plugin list
-    ```
+• List installed plugins:
 
-  • Enable this plugin:
-    ```bash
-    agy plugin enable {{PROJECT_NAME}}
-    ```
+  ```bash
+  agy plugin list
+  ```
 
-  • Disable this plugin:
-    ```bash
-    agy plugin disable {{PROJECT_NAME}}
-    ```
+• Enable this plugin:
 
-  • Uninstall this plugin:
-    ```bash
-    agy plugin uninstall {{PROJECT_NAME}}
-    ```
+  ```bash
+  agy plugin enable {{PROJECT_NAME}}
+  ```
+
+• Disable this plugin:
+
+  ```bash
+  agy plugin disable {{PROJECT_NAME}}
+  ```
+
+• Uninstall this plugin:
+
+  ```bash
+  agy plugin uninstall {{PROJECT_NAME}}
+  ```
 
 > In Antigravity 2.0, you can also inspect and verify the real-time loading status in the **Skills & Customizations** panel in the left sidebar.
 

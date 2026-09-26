@@ -64,27 +64,31 @@ description: 專為 Google Antigravity 外掛程式設計的說明文件智慧�
      ```
 5. **特色亮點**：條列 4 至 6 項核心優勢。
 6. **如何管理與切換外掛程式**：
-   - **關鍵規則：每一行指令都必須使用縮排的獨立單行程式碼區塊（搭配清單圓點 • ）**，讓使用者在 GitHub 介面能直觀瀏覽並單擊複製按鈕獨立複製該行：
+   - **關鍵規則：每一行指令都必須使用縮排的獨立單行程式碼區塊（搭配清單圓點 • ），且圓點標題與程式碼區塊之間必須加入空行以確保換行渲染與獨立複製**，讓使用者在 GitHub 介面能直觀瀏覽並單擊複製按鈕獨立複製該行：
      ```markdown
-       • 列出已安裝外掛：
-         ```bash
-         agy plugin list
-         ```
+     • 列出已安裝外掛：
 
-       • 啟用外掛：
-         ```bash
-         agy plugin enable <plugin-name>
-         ```
+       ```bash
+       agy plugin list
+       ```
 
-       • 停用外掛：
-         ```bash
-         agy plugin disable <plugin-name>
-         ```
+     • 啟用外掛：
 
-       • 移除外掛：
-         ```bash
-         agy plugin uninstall <plugin-name>
-         ```
+       ```bash
+       agy plugin enable <plugin-name>
+       ```
+
+     • 停用外掛：
+
+       ```bash
+       agy plugin disable <plugin-name>
+       ```
+
+     • 移除外掛：
+
+       ```bash
+       agy plugin uninstall <plugin-name>
+       ```
      ```
 7. **專案資料夾目錄**：使用乾淨直觀的 ASCII 樹狀圖呈現結構，不附加冗餘的項目解說清單，維持版面精簡俐落。
 8. **指令功能說明**：

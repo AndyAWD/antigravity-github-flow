@@ -23,25 +23,29 @@ agy plugin install {{GITHUB_REPO_URL}}
 
 ## 如何管理與切換外掛程式
 
-  • 列出已安裝外掛：
-    ```bash
-    agy plugin list
-    ```
+• 列出已安裝外掛：
 
-  • 啟用外掛：
-    ```bash
-    agy plugin enable {{PROJECT_NAME}}
-    ```
+  ```bash
+  agy plugin list
+  ```
 
-  • 停用外掛：
-    ```bash
-    agy plugin disable {{PROJECT_NAME}}
-    ```
+• 啟用外掛：
 
-  • 移除外掛：
-    ```bash
-    agy plugin uninstall {{PROJECT_NAME}}
-    ```
+  ```bash
+  agy plugin enable {{PROJECT_NAME}}
+  ```
+
+• 停用外掛：
+
+  ```bash
+  agy plugin disable {{PROJECT_NAME}}
+  ```
+
+• 移除外掛：
+
+  ```bash
+  agy plugin uninstall {{PROJECT_NAME}}
+  ```
 
 > 在 Antigravity 2.0 左側欄的 **Skills & Customizations** 面板中，亦可即時檢視外掛載入狀態。
 
