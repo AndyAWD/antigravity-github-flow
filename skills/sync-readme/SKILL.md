@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:agy-github-flow:sync-readme
-description: 專為 Google Antigravity 外掛程式設計的說明文件智慧同步技能。自動比對專案結構，依據標準規範智慧分流執行「全新建立」、「增量更新」或「結構重構」雙語說明文件（README.md 與 README.zh-TW.md）。當使用者輸入 /antigravity-github-flow:agy-github-flow:sync-readme 或提及「同步說明文件」、「同步 README」、「建立 README」、「重構 README」時觸發。
+name: agy-github-flow:sync-readme
+description: 專為 Google Antigravity 外掛程式設計的說明文件智慧同步技能。自動比對專案結構，依據標準規範智慧分流執行「全新建立」、「增量更新」或「結構重構」雙語說明文件（README.md 與 README.zh-TW.md）。當使用者輸入 /agy-github-flow:sync-readme 或提及「同步說明文件」、「同步 README」、「建立 README」、「重構 README」時觸發。
 ---
 
 # 說明文件智慧同步（sync-readme）
@@ -10,7 +10,7 @@ description: 專為 Google Antigravity 外掛程式設計的說明文件智慧�
 ## 觸發時機
 
 當符合以下任一條件時觸發本技能：
-1. 使用者輸入斜線指令（Slash Command）：`/antigravity-github-flow:agy-github-flow:sync-readme` 或 `/sync-readme`。
+1. 使用者輸入斜線指令（Slash Command）：`/agy-github-flow:sync-readme` 或 `/sync-readme`。
 2. 使用者提及「同步說明文件」、「同步 README」、「建立 README」、「重構 README」、「維護說明文件」等字眼。
 
 ## 執行流程

@@ -91,7 +91,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 1. Auto Navigation (Auto Next)
 
 ```text
-/antigravity-github-flow:agy-github-flow:auto-next
+/agy-github-flow:auto-next
 ```
 
 - **When to Use**: When unsure of the next step, or wishing to automate the GitHub Flow progression.
@@ -104,7 +104,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 2. Conventional Commits (Commit)
 
 ```text
-/antigravity-github-flow:agy-github-flow:commit
+/agy-github-flow:commit
 ```
 
 - **When to Use**: When changes are ready to be committed to version history.
@@ -117,7 +117,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 3. Branch Merge (Merge)
 
 ```text
-/antigravity-github-flow:agy-github-flow:merge
+/agy-github-flow:merge
 ```
 
 - **When to Use**: When feature or bugfix branch is complete and ready to merge into `main`.
@@ -129,7 +129,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 4. Open Pull Request (GitHub PR)
 
 ```text
-/antigravity-github-flow:agy-github-flow:github-pr
+/agy-github-flow:github-pr
 ```
 
 - **When to Use**: When submitting a pull request to `main` for code review.
@@ -142,7 +142,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 5. Remote Push (Push)
 
 ```text
-/antigravity-github-flow:agy-github-flow:push
+/agy-github-flow:push
 ```
 
 - **When to Use**: When pushing local commits and tags to remote repository.
@@ -153,7 +153,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 6. Remote Fetch (Fetch)
 
 ```text
-/antigravity-github-flow:agy-github-flow:fetch
+/agy-github-flow:fetch
 ```
 
 - **When to Use**: When fetching latest remote refs and fast-forwarding non-current local branches.
@@ -165,7 +165,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 7. Remote Pull (Pull)
 
 ```text
-/antigravity-github-flow:agy-github-flow:pull
+/agy-github-flow:pull
 ```
 
 - **When to Use**: When synchronizing remote commits into current working branch.
@@ -177,7 +177,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 8. Release Branch (Release)
 
 ```text
-/antigravity-github-flow:agy-github-flow:release
+/agy-github-flow:release
 ```
 
 - **When to Use**: When preparing a new release and bumping version numbers.
@@ -187,13 +187,13 @@ Once installed, trigger capabilities using natural language prompts or dedicated
   3. Updates version strings across project manifests (`package.json`, etc.) and commits.
 - **Parameters / Examples** (optional):
 ```text
-/antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
+/agy-github-flow:release [vX.Y.Z]
 ```
 
 ### 9. Version Tag (Tag)
 
 ```text
-/antigravity-github-flow:agy-github-flow:tag
+/agy-github-flow:tag
 ```
 
 - **When to Use**: When tagging a released commit on `main`.
@@ -203,13 +203,13 @@ Once installed, trigger capabilities using natural language prompts or dedicated
   3. Tags commit with `vX.Y.Z` and assists in remote push.
 - **Parameters / Examples** (optional):
 ```text
-/antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
+/agy-github-flow:tag [vX.Y.Z]
 ```
 
 ### 10. GitHub Release (Release Notes)
 
 ```text
-/antigravity-github-flow:agy-github-flow:github-release
+/agy-github-flow:github-release
 ```
 
 - **When to Use**: When creating an official release on GitHub.
@@ -221,7 +221,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 11. Scaffolding Init (Init)
 
 ```text
-/antigravity-github-flow:agy-github-flow:init
+/agy-github-flow:init
 ```
 
 - **When to Use**: When scaffolding GitHub Flow single-trunk structure for a new repository.
@@ -233,7 +233,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 ### 12. Bilingual Documentation Sync (Sync Readme)
 
 ```text
-/antigravity-github-flow:agy-github-flow:sync-readme
+/agy-github-flow:sync-readme
 ```
 
 - **When to Use**: When creating, updating, or refactoring bilingual README files.

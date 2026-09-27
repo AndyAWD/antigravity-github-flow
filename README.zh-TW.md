@@ -91,7 +91,7 @@ antigravity-github-flow/
 ### 1. 智慧導航（Auto Next）
 
 ```text
-/antigravity-github-flow:agy-github-flow:auto-next
+/agy-github-flow:auto-next
 ```
 
 - **使用情境**：不確定下一步該做什麼，或希望由人工智慧自動推進 GitHub Flow 開發流程時。
@@ -104,7 +104,7 @@ antigravity-github-flow/
 ### 2. 慣例式提交（Commit）
 
 ```text
-/antigravity-github-flow:agy-github-flow:commit
+/agy-github-flow:commit
 ```
 
 - **使用情境**：開發告一段落，準備將工作區變更寫入版本歷史時。
@@ -117,7 +117,7 @@ antigravity-github-flow/
 ### 3. 分支合併（Merge）
 
 ```text
-/antigravity-github-flow:agy-github-flow:merge
+/agy-github-flow:merge
 ```
 
 - **使用情境**：功能或修復開發完成，準備整併回 `main` 主分支時。
@@ -129,7 +129,7 @@ antigravity-github-flow/
 ### 4. 發布拉取請求（GitHub PR）
 
 ```text
-/antigravity-github-flow:agy-github-flow:github-pr
+/agy-github-flow:github-pr
 ```
 
 - **使用情境**：準備從工作分支向 `main` 主分支發起程式碼審查時。
@@ -142,7 +142,7 @@ antigravity-github-flow/
 ### 5. 遠端推播（Push）
 
 ```text
-/antigravity-github-flow:agy-github-flow:push
+/agy-github-flow:push
 ```
 
 - **使用情境**：將本地端變更與標籤同步上傳至遠端儲存庫時。
@@ -153,7 +153,7 @@ antigravity-github-flow/
 ### 6. 遠端狀態擷取（Fetch）
 
 ```text
-/antigravity-github-flow:agy-github-flow:fetch
+/agy-github-flow:fetch
 ```
 
 - **使用情境**：擷取遠端最新變更與標籤，並在本地多軌快轉更新所有非當前分支時。
@@ -165,7 +165,7 @@ antigravity-github-flow/
 ### 7. 遠端拉取（Pull）
 
 ```text
-/antigravity-github-flow:agy-github-flow:pull
+/agy-github-flow:pull
 ```
 
 - **使用情境**：整合遠端最新進度至當前工作分支時。
@@ -177,7 +177,7 @@ antigravity-github-flow/
 ### 8. 建立發布準備分支（Release）
 
 ```text
-/antigravity-github-flow:agy-github-flow:release
+/agy-github-flow:release
 ```
 
 - **使用情境**：準備發布新版本並更新專案版號時。
@@ -187,13 +187,13 @@ antigravity-github-flow/
   3. 自動更新 `package.json`、`build.gradle`、`pyproject.toml` 等檔案中的版本號並建立提交。
 - **參數與範例**（選用）：
 ```text
-/antigravity-github-flow:agy-github-flow:release [vX.Y.Z]
+/agy-github-flow:release [vX.Y.Z]
 ```
 
 ### 9. 自動版號標記（Tag）
 
 ```text
-/antigravity-github-flow:agy-github-flow:tag
+/agy-github-flow:tag
 ```
 
 - **使用情境**：在 `main` 主分支完成合併後，為節點標記正式版本標籤時。
@@ -203,13 +203,13 @@ antigravity-github-flow/
   3. 建立 `vX.Y.Z` 標籤並引導推播至遠端。
 - **參數與範例**（選用）：
 ```text
-/antigravity-github-flow:agy-github-flow:tag [vX.Y.Z]
+/agy-github-flow:tag [vX.Y.Z]
 ```
 
 ### 10. 建立 GitHub 發布（GitHub Release）
 
 ```text
-/antigravity-github-flow:agy-github-flow:github-release
+/agy-github-flow:github-release
 ```
 
 - **使用情境**：在 GitHub 儲存庫上建立正式發布說明時。
@@ -221,7 +221,7 @@ antigravity-github-flow/
 ### 11. 專案初始化（Init）
 
 ```text
-/antigravity-github-flow:agy-github-flow:init
+/agy-github-flow:init
 ```
 
 - **使用情境**：全新專案一鍵搭建 GitHub Flow 單一主分支基礎架構時。
@@ -233,7 +233,7 @@ antigravity-github-flow/
 ### 12. 說明文件智慧同步（Sync Readme）
 
 ```text
-/antigravity-github-flow:agy-github-flow:sync-readme
+/agy-github-flow:sync-readme
 ```
 
 - **使用情境**：全新建立、增量更新或結構重構專案的雙語說明文件時。

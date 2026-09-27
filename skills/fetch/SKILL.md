@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:agy-github-flow:fetch
-description: 擷取遠端儲存庫的最新物件與標籤，並在本地安全快轉更新所有非當前分支。「不行的話就算了」原則：遇到分叉、衝突或未追蹤分支則安全略過。當使用者輸入 /antigravity-github-flow:agy-github-flow:fetch 或提及「fetch」、「擷取遠端」時觸發。
+name: agy-github-flow:fetch
+description: 擷取遠端儲存庫的最新物件與標籤，並在本地安全快轉更新所有非當前分支。「不行的話就算了」原則：遇到分叉、衝突或未追蹤分支則安全略過。當使用者輸入 /agy-github-flow:fetch 或提及「fetch」、「擷取遠端」時觸發。
 ---
 
 # 遠端狀態擷取（Fetch）
@@ -9,7 +9,7 @@ description: 擷取遠端儲存庫的最新物件與標籤，並在本地安全�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:agy-github-flow:fetch`。
+1. 當使用者輸入 `/agy-github-flow:fetch`。
 2. 當使用者提及「幫我 fetch」、「擷取遠端」、「更新遠端資訊」時。
 3. 作為 `pull` 技能執行時的**強制前置動作**。
 
@@ -26,7 +26,7 @@ description: 擷取遠端儲存庫的最新物件與標籤，並在本地安全�
 
 ## 執行的實作步驟
 
-重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `antigravity-github-flow:agy-github-flow:fetch`（或 `fetch`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/fetch.js`），絕不可使用相對路徑。
+重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `agy-github-flow:fetch`（或 `fetch`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/fetch.js`），絕不可使用相對路徑。
 
 1. **第一步：執行 Fetch 診斷與更新腳本**
    透過 `run_command` 執行輔助腳本：
@@ -43,5 +43,5 @@ description: 擷取遠端儲存庫的最新物件與標籤，並在本地安全�
    - 遠端擷取與已同步標籤狀態。
    - 非當前分支的快轉更新結果（若有無法快轉者，說明「因本地有分叉或無遠端分支已安全略過（不行的話就算了）」）。
    - 當前分支狀態：
-     - 若當前分支有落後提交（behind > 0）：主動建議使用者執行 `/antigravity-github-flow:agy-github-flow:pull` 進行拉取。
+     - 若當前分支有落後提交（behind > 0）：主動建議使用者執行 `/agy-github-flow:pull` 進行拉取。
      - 若當前分支已是最新狀態：告知使用者工作區已是最新。

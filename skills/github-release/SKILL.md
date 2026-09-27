@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:agy-github-flow:github-release
-description: 專為 GitHub Release 設計的雙語發布說明（Release Notes）生成技能。自動比對 Git 提交歷史，依照 antigravity-cli-statusline v1.7.0 標準格式產生中英文雙語變更日誌（Changelog），並支援直接透過 GitHub CLI 建立 Release。當使用者輸入 /antigravity-github-flow:agy-github-flow:github-release 或提及「產生 Release Notes」、「建立 Release」時觸發。
+name: agy-github-flow:github-release
+description: 專為 GitHub Release 設計的雙語發布說明（Release Notes）生成技能。自動比對 Git 提交歷史，依照 antigravity-cli-statusline v1.7.0 標準格式產生中英文雙語變更日誌（Changelog），並支援直接透過 GitHub CLI 建立 Release。當使用者輸入 /agy-github-flow:github-release 或提及「產生 Release Notes」、「建立 Release」時觸發。
 ---
 
 # 建立 GitHub Release
@@ -9,7 +9,7 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入斜線指令（Slash Command）：`/antigravity-github-flow:agy-github-flow:github-release`。
+1. 當使用者輸入斜線指令（Slash Command）：`/agy-github-flow:github-release`。
 2. 當使用者提及「幫我建立 release」、「發布版本」、「產生 Release Notes」時。
 
 ## 執行的實作步驟

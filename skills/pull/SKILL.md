@@ -1,6 +1,6 @@
 ---
-name: antigravity-github-flow:agy-github-flow:pull
-description: 安全拉取遠端最新進度至當前工作分支。執行時強制先執行 fetch 技能更新全域狀態；若因衝突、分叉、工作區髒污等原因無法直接拉取，自動透過 ask_question 互動選單建議下一步解決方案。當使用者輸入 /antigravity-github-flow:agy-github-flow:pull 或提及「幫我 pull」、「拉取程式碼」時觸發。
+name: agy-github-flow:pull
+description: 安全拉取遠端最新進度至當前工作分支。執行時強制先執行 fetch 技能更新全域狀態；若因衝突、分叉、工作區髒污等原因無法直接拉取，自動透過 ask_question 互動選單建議下一步解決方案。當使用者輸入 /agy-github-flow:pull 或提及「幫我 pull」、「拉取程式碼」時觸發。
 ---
 
 # 遠端拉取（Pull）
@@ -9,7 +9,7 @@ description: 安全拉取遠端最新進度至當前工作分支。執行時強�
 
 ## 什麼時候觸發此技能？
 
-1. 當使用者輸入 `/antigravity-github-flow:agy-github-flow:pull`。
+1. 當使用者輸入 `/agy-github-flow:pull`。
 2. 當使用者提及「幫我 pull」、「從遠端拉取」、「更新最新程式碼」、「同步雲端進度」時。
 
 ## 核心執行規則
@@ -23,10 +23,10 @@ description: 安全拉取遠端最新進度至當前工作分支。執行時強�
 
 ## 執行的實作步驟
 
-重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `antigravity-github-flow:agy-github-flow:pull`（或 `pull`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/pull-status.js`），絕不可使用相對路徑。
+重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `agy-github-flow:pull`（或 `pull`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/pull-status.js`），絕不可使用相對路徑。
 
 ### 第一步：強制執行前置 Fetch
-呼叫 `antigravity-github-flow:agy-github-flow:fetch` 技能，或執行 fetch 腳本：
+呼叫 `agy-github-flow:fetch` 技能，或執行 fetch 腳本：
 ```bash
 node <fetch技能絕對目錄>/scripts/fetch.js
 ```
@@ -52,7 +52,7 @@ git pull --ff-only
 向使用者說明「目前分支已是最新狀態，無需重複拉取」。
 
 #### 情境 3：本地超前但遠端無新進度（AHEAD_ONLY）
-向使用者說明「目前分支超前遠端，無遠端進度需要拉取」，並建議執行 `/antigravity-github-flow:agy-github-flow:push`。
+向使用者說明「目前分支超前遠端，無遠端進度需要拉取」，並建議執行 `/agy-github-flow:push`。
 
 #### 情境 4：工作區有未提交修改（DIRTY_WORKTREE）
 無法直接執行安全拉取，呼叫 `ask_question` 工具：
