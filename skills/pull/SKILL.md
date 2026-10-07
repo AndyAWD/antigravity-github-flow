@@ -23,7 +23,7 @@ description: 安全拉取遠端最新進度至當前工作分支。執行時強�
 
 ## 執行的實作步驟
 
-重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `agy-github-flow:pull`（或 `pull`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/pull-status.js`），絕不可使用相對路徑。
+重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `agy-github-flow:pull` 與 `agy-github-flow:commit`（或 `pull` 與 `commit`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/pull-status.js` 或 `node <commit技能絕對目錄>/scripts/commit.js`），絕不可使用相對路徑。
 
 ### 第一步：強制執行前置 Fetch
 呼叫 `agy-github-flow:fetch` 技能，或執行 fetch 腳本：
@@ -75,6 +75,13 @@ git pull --ff-only
 }
 ```
 
+- 若選擇「先暫存變更（git stash）後拉取，拉取完畢再還原（git stash pop）」：依序執行 `git stash push -m "pull-backup"`、`git pull --ff-only`、`git stash pop`。
+- **關鍵防越界規範**：若選擇「將目前的修改先建立 Commit 後再拉取」：
+  - **必須立即中止拉取流程**，明確向使用者提示：「偵測到工作區尚有未提交的變更。Pull 技能僅負責遠端拉取與整合，不處理程式碼提交。請先使用 `/agy-github-flow:commit` 完成正規提交流程後再進行拉取。」
+  - **嚴格禁止在本技能內自行拼湊或執行原生 `git add` 或 `git commit` 指令，亦嚴格禁止私自代為提交。**
+- 若選擇「放棄本地未提交的修改（git reset --hard）後拉取」：執行 `git reset --hard HEAD` 後執行 `git pull --ff-only`。
+- 若選擇「取消拉取操作」：保持現狀，結束流程。
+
 #### 情境 5：本地與遠端雙向分叉（DIVERGED）
 本地與遠端各自有獨立的新提交，呼叫 `ask_question` 工具：
 ```json
@@ -115,6 +122,15 @@ git pull --ff-only
   "toolAction": "詢問衝突處理方式"
 }
 ```
+
+- 若選擇由 AI 協助分析並排解衝突：衝突檔案排解完成後，僅精準暫存已解決檔案（`git add <衝突檔案>`），完成合併提交時**必須使用 commit 技能之 `scripts/commit.js` 執行提交**：
+  ```bash
+  node <commit技能絕對目錄>/scripts/commit.js "Merge branch '<remote>/<branch>' into <當前分支>"
+  ```
+  （該腳本會自動注入官方共同作者簽名 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`）。
+  **嚴格禁止執行原生 `git commit` 指令**。
+- 若選擇中止本次拉取：依拉取模式執行 `git merge --abort` 或 `git rebase --abort`。
+- 若選擇由使用者自行編輯排解：保持衝突標記，並提示使用者完成排解後可使用 `/agy-github-flow:commit` 提交。
 
 #### 情境 7：目前分支尚未設定上游追蹤（NO_UPSTREAM）
 若尚未設定 upstream，呼叫 `ask_question` 工具：
@@ -175,3 +191,9 @@ git pull --ff-only
   "toolAction": "詢問連線失敗重試方式"
 }
 ```
+
+## 嚴格禁止事項（Anti-patterns）
+
+1. **嚴格禁止執行原生 `git commit` 指令**：本技能完全不包含提交程式碼的功能。任何程式碼提交必須由 `commit` 技能經由 `scripts/commit.js` 執行，以確保共同作者簽名與慣例式提交格式正確無誤。
+2. **嚴格禁止跨技能越界代理提交**：當工作區有未提交修改且使用者希望先建立 Commit 時，必須直接中斷並指引使用者執行 `/agy-github-flow:commit`，嚴格禁止在本技能內自行拼湊或執行原生 `git add` 或 `git commit` 代為提交。
+3. **嚴格禁止在非乾淨狀態下逕行執行拉取**：工作區有未提交變更時，不可在未暫存或未提交的狀態下直接執行 `git pull`，避免檔案遭覆寫或污染。

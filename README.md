@@ -109,7 +109,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
 
 - **When to Use**: When changes are ready to be committed to version history.
 - **How It Works**:
-  1. Stages changes and performs safety checks.
+  1. Smart untracked files review: Inspects file contents, explains functionality, groups files by type, and prompts the user via multi-select to choose which files to track, discard, or ignore.
   2. Splits multi-task changes into discrete logical commits.
   3. Guides switching off `main` if on trunk, or commits directly if intended.
   4. Generates Conventional Commit messages with Google Antigravity co-author trailer.

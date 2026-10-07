@@ -1,6 +1,6 @@
 ---
 name: agy-github-flow:commit
-description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 的 author 與 committer 都將強制加上 Google Antigravity 共同作者簽名。當使用者輸入 /agy-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
+description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 必須使用 scripts/commit.js 提交並附帶官方共同作者簽名 Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>。當使用者輸入 /agy-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
 ---
 
 # 慣例式提交與 GitHub Flow 規範
@@ -81,15 +81,100 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 
 若使用者選擇切出新分支，請接著引導分支名稱並呼叫 `scripts/branch-guard.js <type> <name>` 建立分支。
 
+### 未追蹤檔案之審查與多選確認（git add 階段）
+
+當偵測到工作區存在未追蹤檔案（沒有被版本控制的檔案）時，必須先看過檔案內容並說明功能、依相同類型群組展示，再使用 `ask_question` 工具（使用者提示詞中亦稱 `ask_user_question`，多檔案時使用 `is_multi_select: true` 多選模式）詢問使用者：
+
+#### 1. 多個未追蹤檔案時（多選模式：ask_user_question / ask_question）
+
+在呼叫工具前，先在對話中以 Markdown 輸出群組與檔案功能說明，接著呼叫多選確認：
+
+```json
+{
+  "questions": [
+    {
+      "question": "偵測到以下未追蹤檔案並已完成功能分析。請選擇要加入版本控制的檔案：",
+      "options": [
+        "將 [src/auth.js](file:///workspace/src/auth.js) 加入版本控制（[程式原始碼] 處理使用者登入與 JWT 權杖簽署）",
+        "將 [config/app.json](file:///workspace/config/app.json) 加入版本控制（[設定與組態] 應用程式 API 端點與連線逾時設定）",
+        "將 [docs/api.md](file:///workspace/docs/api.md) 加入版本控制（[說明文件] REST API 規格說明書）",
+        "將 [tests/auth.test.js](file:///workspace/tests/auth.test.js) 加入版本控制（[測試檔案] 登入驗證單元測試）"
+      ],
+      "is_multi_select": true
+    }
+  ],
+  "toolSummary": "選擇加入版本控制的檔案",
+  "toolAction": "多選勾選未追蹤檔案納入版本控制清單"
+}
+```
+
+若有多個檔案且使用者僅勾選其中部分（或皆未勾選），針對剩餘未選取之檔案，進一步確認處置意圖（丟棄、忽略或保留）：
+
+```json
+{
+  "questions": [
+    {
+      "question": "針對未勾選加入版本控制的檔案，請問希望如何處置？",
+      "options": [
+        "(Recommended) 暫不加入版本控制（保留在工作區但不追蹤）",
+        "加入 .gitignore 忽略這些檔案",
+        "丟棄這些檔案（自工作區刪除）"
+      ],
+      "is_multi_select": false
+    }
+  ],
+  "toolSummary": "確認未選取檔案處置",
+  "toolAction": "詢問未選取檔案之丟棄或忽略處置"
+}
+```
+
+#### 2. 單一未追蹤檔案時（單選模式）
+
+```json
+{
+  "questions": [
+    {
+      "question": "偵測到未追蹤檔案 [path/to/file](file:///workspace/path/to/file)（功能：<功能摘要說明>），請問是否要加入版本控制？",
+      "options": [
+        "(Recommended) 加入版本控制（執行 git add）",
+        "暫不加入版本控制（保留在工作區但不追蹤）",
+        "加入 .gitignore 忽略此檔案",
+        "丟棄此檔案（自工作區刪除）"
+      ],
+      "is_multi_select": false
+    }
+  ],
+  "toolSummary": "確認單一檔案處置",
+  "toolAction": "詢問未追蹤檔案是否納入版本控制"
+}
+```
+
 ## 執行的 8 個步驟
 
 重要提示：關於腳本執行路徑，由於本技能作為 Plugin 載入，請從您的系統提示詞 `<skills>` 列表中，找出 `agy-github-flow:commit`（或 `commit`）技能被載入的絕對路徑（位於括號中）。請解析該絕對目錄位置，並替換為 `scripts/` 資料夾的絕對路徑後執行腳本（例如：`node /絕對路徑/scripts/analyze.js`），絕不可使用相對路徑。
 
 1. 第一步：確認當前分支。若在 `main` 或 `master`，則執行上述 `ask_question` 流程。
-2. 第二步：執行 `git ls-files --others --exclude-standard` 檢查是否有未追蹤的新檔案。
-   - 若有新檔案，必須暫停並列出清單，使用 `ask_question` 詢問安全確認。
-   - 提供選項：「(Recommended) 這些檔案都安全，全部加入」、「裡面有敏感檔案，我要加入 .gitignore」、「這次先不提交這些新檔案」。
-   - 若無新檔案，則直接執行 `git add -A`。
+2. 第二步：未追蹤檔案功能檢視、群組分類與版本控制確認（git add 階段防護）。
+   - **偵測未追蹤檔案**：執行 `node <commit技能目錄>/scripts/inspect-untracked.js`（或加上 `--json` 取得結構化資料；亦可搭配 `git -c core.quotePath=false ls-files --others --exclude-standard` 雙重確認）。
+   - **無未追蹤檔案**：若無任何未追蹤檔案，直接精準將已修改的追蹤檔案加入暫存區（或執行 `git add -u`），進入第三步。
+   - **有未追蹤檔案時的必要流程**：
+     1. **看過並說明檔案功能**：
+        - 助理必須使用 `view_file` 或讀取檔案內容確實檢視每一個未追蹤檔案（大型或二進位檔案則檢視其檔名、目錄與大小）。
+        - 提煉並說明每個檔案的作用與功能（例如：定義何種邏輯、提供何種功能、組態設定項目、文件說明或測試案例）。
+     2. **相同類型檔案依群組顯示**：
+        - 將相同類型或用途的檔案進行群組化歸納（例如：程式原始碼群組、設定與組態群組、建置與相依性群組、說明文件群組、測試檔案群組、樣式與標記群組、暫存與記錄檔群組等）。
+        - 在向使用者提問之前，以 Markdown 結構化清單呈現各群組名稱與每個檔案的功能說明。
+     3. **詢問是否加入版本控制**：
+        - **多個檔案**：呼叫 `ask_question` 工具（使用者提示詞中亦稱 `ask_user_question`，設定 `is_multi_select: true` 多選模式），選項中列出各檔案（標註群組名稱與功能摘要）供使用者逐一勾選要加入版本控制的檔案。
+        - **單一檔案**：呼叫 `ask_question`（`is_multi_select: false`），呈現該檔案功能後詢問處置方式（加入版本控制 / 暫不加入版本控制 / 加入 .gitignore / 丟棄刪除）。
+     4. **處置未選取檔案**：
+        - 若有未被選取的檔案，依上述確認處置規則詢問處置方式（保留不追蹤 / 加入 .gitignore / 丟棄刪除）。
+     5. **執行加入或處置**：
+        - 針對確定要納入版本控制的檔案，執行精準 `git add <檔案1> <檔案2>...`。
+        - 針對選擇忽略的檔案，將路徑規則附加至專案根目錄 `.gitignore`。
+        - 針對選擇丟棄的檔案，執行檔案刪除。
+        - 針對保留的檔案，維持未追蹤狀態不予加入暫存。
+        - **嚴格禁止**未經檢視與使用者同意無差別執行 `git add -A`。
 3. 第三步：透過 `run_command` 執行 `scripts/analyze.js` 蒐集工作區狀態與 diff 資訊。
 4. 第四步：依 diff 內容自動分析並拆分獨立任務群組。
 5. 第五步：執行 `scripts/branch-guard.js <type> <branch-name>` 確保分支正確。
@@ -108,3 +193,9 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 
 Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>
 ```
+
+## 嚴格禁止事項（Anti-patterns）
+
+1. **嚴格禁止執行原生 `git commit` 指令**：所有提交必須統一呼叫 `scripts/commit.js` 執行，嚴格禁止直接使用 `git commit -m` 或其他原生提交指令，以防止遺漏官方共同作者簽名或繞過簽名正規化驗證。
+2. **嚴格禁止使用非官方共同作者簽名變體**：共同作者簽名必須嚴格為 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`，嚴格禁止使用個人信箱或其他非官方格式。
+3. **嚴格禁止未經檢視與未經使用者確認直接提交未追蹤新檔案**：若偵測到未追蹤檔案，必須確實看過檔案內容並說明其功能、同類型檔案依群組呈現，並透過 `ask_question`（使用者提示詞中亦稱 `ask_user_question`，多檔案時使用多選模式 `is_multi_select: true`）由使用者親自挑選要納入版本控制的檔案，嚴禁未看過檔案內容即盲目詢問或無差別全量暫存（`git add -A`）。

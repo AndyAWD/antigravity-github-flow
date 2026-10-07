@@ -16,6 +16,13 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
 
 本技能執行時，請依照下列步驟依序進行：
 
+### 步驟 0：工作區狀態檢查（防越界機制）
+
+1. 執行 `git status --porcelain` 檢查工作區是否乾淨。
+2. 若偵測到有未暫存、已暫存或未追蹤的檔案（工作區非乾淨狀態）：
+   - **必須立即中止流程**，嚴格禁止在本技能內自行拼湊或執行原生 `git add` 或 `git commit` 指令，亦嚴格禁止詢問使用者是否代為提交。
+   - 明確提示使用者：「偵測到工作區尚有未提交的變更。GitHub Release 發布前工作區必須保持乾淨，避免未提交的修改遺漏或造成版本狀態不一致。請先使用 `/agy-github-flow:commit` 完成正規提交流程後再發布 Release。」
+
 ### 步驟 1：確認版本號與目標標籤
 
 1. 檢查分支與目標標籤：
@@ -81,3 +88,8 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
    gh release create <版本號> --title "<版本號>" --notes "<發布說明內容>"
    ```
 4. 若未安裝或未登入 GitHub CLI，提供產出的 Markdown 文本供使用者手動複製至 GitHub 網頁發布。
+
+## 嚴格禁止事項（Anti-patterns）
+
+1. **嚴格禁止執行原生 `git commit` 或檔案暫存指令**：本技能僅負責發布說明產出與 GitHub Release 建立，不包含任何程式碼提交行為。
+2. **嚴格禁止跨技能越界代理**：若發布前工作區有未提交的修改，應提示使用者先透過 `/agy-github-flow:commit` 處理，絕不可在本技能內代為提交。

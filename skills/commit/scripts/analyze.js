@@ -3,7 +3,7 @@ import { execFileSync } from 'node:child_process';
 
 const run = (args, options = {}) => {
   try {
-    return execFileSync('git', args, {
+    return execFileSync('git', ['-c', 'core.quotePath=false', ...args], {
       encoding: 'utf8',
       env: { ...process.env, GIT_TERMINAL_PROMPT: '0' },
       ...options,
@@ -27,6 +27,7 @@ if (remotes) {
 
 section('current branch', run(['symbolic-ref', '--short', 'HEAD']));
 section('git status', run(['status', '--short', '--branch']));
+section('untracked files', run(['ls-files', '--others', '--exclude-standard']));
 section('staged diff (--stat)', run(['diff', '--cached', '--stat']));
 section('staged full diff', run(['diff', '--cached']));
 section('recent commits (last 10)', run(['log', '--oneline', '-10']));

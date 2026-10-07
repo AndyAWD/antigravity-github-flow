@@ -2,6 +2,7 @@
   "name": "antigravity-github-flow",
   "version": "0.1.0",
   "description": "Antigravity plugin for Conventional Commits and lightweight GitHub Flow branching.",
+  "author": "AndyAWD <anandydy529@gmail.com>",
   "license": "MIT",
   "engines": {
     "node": ">=18"
