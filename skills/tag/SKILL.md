@@ -34,7 +34,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的�
 ### 步驟 2：檢查手動指定版號
 
 1. 若使用者在呼叫技能時明確提供版號（例如：`/agy-github-flow:tag v1.2.3`）。
-2. 直接跳過後續的 SemVer 分析，使用指令 `git tag <手動版號>` 在最新節點打上標籤，並提示使用者推播（`git push --tags`），結束流程。
+2. 直接跳過後續的 SemVer 分析，使用指令 `git tag -a <手動版號> -m "Release <手動版號>"` 在最新節點打上附註標籤（Annotated Tag），並提示使用者推播（`git push --follow-tags` 或 `git push --tags`），結束流程。
 
 ### 步驟 3：找出未標籤的提交節點（支援 Merge/Squash/Rebase 與初版發布）
 
@@ -83,7 +83,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的�
 
 ### 步驟 6：執行標記與推播提示
 
-1. 對於新版號，執行 `git tag <版號> <目標節點的 hash>`（若為最新提交亦可使用 HEAD）。
+1. 對於新版號，執行附註標籤（Annotated Tag）指令 `git tag -a <版號> -m "Release <版號>" <目標節點的 hash>`（若為最新提交亦可使用 HEAD），確保 `push --follow-tags` 能成功推送標籤至遠端。
 2. 執行完成後，向使用者總結打上的 Tag，並從技能列表中讀取並執行 `agy-github-flow:push`（或 `push`）技能，將標籤同步至遠端。
 
 ## 嚴格禁止事項（Anti-patterns）

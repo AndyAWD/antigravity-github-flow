@@ -29,7 +29,10 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
 1. 檢查分支與目標標籤：
    - 執行 `git branch --show-current` 確認當前分支（通常在 `main` 或 `master` 主分支發布）。
    - 讀取 `package.json` 或 `plugin.json` 中的 `version` 欄位。
-   - 執行 `git describe --tags --abbrev=0` 查詢上一個 Git 標籤（Tag）。若指令回傳錯誤（例如 `fatal: No names found`），代表儲存庫尚無任何標籤，本次為初始版本發布。
+   - 查詢上一個 Git 標籤（Tag）：
+     - 執行 `git describe --tags --abbrev=0` 查詢最新標籤。
+     - **防範比對退化機制**：若 HEAD 已經被標記本次標籤（例如剛剛執行過 `tag` 技能，導致 `git describe` 輸出即為本次發布版本號），必須改用 `git describe --tags --abbrev=0 HEAD^` 取得真正的前一個標籤（Previous Tag）。
+     - 若指令回傳錯誤（例如 `fatal: No names found` 或無父節點），代表儲存庫在此之前尚無任何標籤，本次為初始版本發布。
 2. 若使用者未明確指定發布版本號，呼叫 `ask_question` 工具向使用者確認預計發布的版本號（例如 `v1.0.0`）；若環境無互動介面則以專案設定檔之版本號為主。
 
 ### 步驟 2：擷取與分類 Git 提交歷史
@@ -39,8 +42,8 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
 2. 取得遠端儲存庫名稱：
    - 執行 `git remote get-url origin` 解析 GitHub 儲存庫路徑 `<owner>/<repo>`（支援 HTTPS 與 SSH 格式）。若無遠端，退回預設佔位符號。
 3. 擷取 Commit 紀錄：
-   - 若存在上一個標籤：執行 `git log <上一個Tag>..HEAD --oneline`。
-   - 若尚無任何標籤（初始版本）：執行 `git log HEAD --oneline` 取得專案全域提交歷史。
+   - 若存在前一個標籤：執行 `git log <前一個Tag>..HEAD --oneline`（若 HEAD 已被標記本次標籤，亦可為 `git log <前一個Tag>..<本次版本號> --oneline`），確保正確擷取版本間的提交歷史，修復變更日誌（Changelog）全空與比對連結退化的問題。
+   - 若尚無前一個標籤（初始版本）：執行 `git log HEAD --oneline` 取得專案全域提交歷史。
 4. 依據慣例式提交（Conventional Commits）規範分析變更並歸類：
    - `feat:` -> 英文：`**Feat:**` / 繁體中文：`**新功能:**`
    - `fix:` -> 英文：`**Fix:**` / 繁體中文：`**修正:**`
@@ -72,8 +75,8 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
 - **新功能:** [繁體中文描述] by @[GitHub 帳號]
 - **修正:** [繁體中文描述] by @[GitHub 帳號]
 
-<!-- 若有上一個標籤，使用 compare 連結： -->
-**Full Changelog**: https://github.com/<owner>/<repo>/compare/<上一個Tag>...<本次版本號>
+<!-- 若有前一個標籤，使用 compare 連結： -->
+**Full Changelog**: https://github.com/<owner>/<repo>/compare/<前一個Tag>...<本次版本號>
 
 <!-- 若為初始發布（尚無舊標籤），使用 commits 連結： -->
 **Full Changelog**: https://github.com/<owner>/<repo>/commits/<本次版本號>
