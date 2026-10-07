@@ -116,8 +116,8 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
     {
       "question": "針對未勾選加入版本控制的檔案，請問希望如何處置？",
       "options": [
-        "(Recommended) 暫不加入版本控制（保留在工作區但不追蹤）",
-        "加入 .gitignore 忽略這些檔案",
+        "(Recommended) 加入 .gitignore 忽略這些檔案",
+        "暫不加入版本控制（保留在工作區但不追蹤）",
         "丟棄這些檔案（自工作區刪除）"
       ],
       "is_multi_select": false
@@ -128,6 +128,8 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
 }
 ```
 
+> **注意（合約協調）**：若使用者選擇「暫不加入版本控制（保留在工作區但不追蹤）」，外掛其餘所有技能（如 push, pull, merge, release, tag 等）步驟 0 已全面採用 `git status --untracked-files=no --porcelain`，未追蹤檔案不會阻塞後續流程；但仍建議透過 `.gitignore` 排除以維護工作區整潔。
+
 #### 2. 單一未追蹤檔案時（單選模式）
 
 ```json
@@ -137,8 +139,8 @@ description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動�
       "question": "偵測到未追蹤檔案 [path/to/file](file:///workspace/path/to/file)（功能：<功能摘要說明>），請問是否要加入版本控制？",
       "options": [
         "(Recommended) 加入版本控制（執行 git add）",
-        "暫不加入版本控制（保留在工作區但不追蹤）",
         "加入 .gitignore 忽略此檔案",
+        "暫不加入版本控制（保留在工作區但不追蹤）",
         "丟棄此檔案（自工作區刪除）"
       ],
       "is_multi_select": false

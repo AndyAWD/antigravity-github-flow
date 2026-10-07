@@ -48,7 +48,7 @@ function main() {
     process.exit(0);
   }
 
-  const statusPorcelain = safeGit(['status', '--porcelain']);
+  const statusPorcelain = safeGit(['status', '--untracked-files=no', '--porcelain']);
   const dirtyFiles = statusPorcelain ? statusPorcelain.split('\n').filter(Boolean) : [];
   const isDirty = dirtyFiles.length > 0;
 

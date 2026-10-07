@@ -18,10 +18,11 @@ description: 專為 GitHub Release 設計的雙語發布說明（Release Notes�
 
 ### 步驟 0：工作區狀態檢查（防越界機制）
 
-1. 執行 `git status --porcelain` 檢查工作區是否乾淨。
-2. 若偵測到有未暫存、已暫存或未追蹤的檔案（工作區非乾淨狀態）：
+1. 執行 `git status --untracked-files=no --porcelain` 檢查工作區是否乾淨。
+2. 若偵測到有已追蹤檔案之未暫存或已暫存的修改（工作區非乾淨狀態）：
    - **必須立即中止流程**，嚴格禁止在本技能內自行拼湊或執行原生 `git add` 或 `git commit` 指令，亦嚴格禁止詢問使用者是否代為提交。
-   - 明確提示使用者：「偵測到工作區尚有未提交的變更。GitHub Release 發布前工作區必須保持乾淨，避免未提交的修改遺漏或造成版本狀態不一致。請先使用 `/agy-github-flow:commit` 完成正規提交流程後再發布 Release。」
+   - 明確提示使用者：「偵測到工作區尚有已追蹤檔案之未提交變更。GitHub Release 發布前工作區必須保持乾淨，避免未提交的修改遺漏或造成版本狀態不一致。請先使用 `/agy-github-flow:commit` 完成正規提交流程後再發布 Release。」
+   - 注意：未追蹤檔案（Untracked files）不阻擋發布 Release 流程。
 
 ### 步驟 1：確認版本號與目標標籤
 

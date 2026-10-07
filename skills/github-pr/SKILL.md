@@ -18,10 +18,11 @@ description: 專為 GitHub 拉取請求（Pull Request）設計的多語系說�
 
 ### 步驟 0：工作區狀態檢查（防越界機制）
 
-1. 執行 `git status --porcelain` 檢查工作區是否乾淨。
-2. 若偵測到有未暫存、已暫存或未追蹤的檔案（工作區非乾淨狀態）：
+1. 執行 `git status --untracked-files=no --porcelain` 檢查工作區是否乾淨。
+2. 若偵測到有已追蹤檔案之未暫存或已暫存的修改（工作區非乾淨狀態）：
    - **必須立即中止流程**，嚴格禁止在本技能內自行拼湊或執行原生 `git add` 或 `git commit` 指令，亦嚴格禁止詢問使用者是否代為建立分支提交。
-   - 明確提示使用者：「偵測到工作區尚有未提交的變更。Pull Request 技能僅負責發起 PR，不處理程式碼提交。請先使用 `/agy-github-flow:commit` 完成正規提交流程後再發起 PR。」
+   - 明確提示使用者：「偵測到工作區尚有已追蹤檔案之未提交變更。Pull Request 技能僅負責發起 PR，不處理程式碼提交。請先使用 `/agy-github-flow:commit` 完成正規提交流程後再發起 PR。」
+   - 注意：未追蹤檔案（Untracked files）不阻擋發起 PR 流程。
 
 ### 步驟 1：遠端同步與分支檢查
 
