@@ -1,6 +1,6 @@
 ---
 name: agy-github-flow:commit
-description: 依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 必須使用 scripts/commit.js 提交並附帶官方共同作者簽名 Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>。當使用者輸入 /agy-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。
+description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 必須使用 scripts/commit.js 提交並附帶官方共同作者簽名 Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>。當使用者輸入 /agy-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。"
 ---
 
 # 慣例式提交與 GitHub Flow 規範
