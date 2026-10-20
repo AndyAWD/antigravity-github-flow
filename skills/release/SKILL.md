@@ -56,12 +56,12 @@ description: 依照 GitHub Flow 規範建立發布準備分支，並具備跨平
      ```bash
      node <commit技能絕對目錄>/scripts/commit.js "chore(release): bump version to <版號>"
      ```
-     （該腳本會自動注入官方共同作者簽名 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`）。
+     （該腳本會自動注入 AI 產生者簽名 `Generated-by: [模型名稱] ([思考等級])`（未註明時預設 `Generated-by: Google Antigravity`））。
    - **嚴格禁止執行原生 `git commit` 指令**。
 2. 若無檔案更新，告知使用者「發布分支建立完畢，未偵測到需要自動更新的版號檔案」。
 
 ## 嚴格禁止事項（Anti-patterns）
 
-1. **嚴格禁止執行原生 `git commit` 指令**：提交版號變更必須統一透過 `scripts/commit.js` 執行，以確保官方共同作者簽名與格式正確無誤。
+1. **嚴格禁止執行原生 `git commit` 指令**：提交版號變更必須統一透過 `scripts/commit.js` 執行，以確保 AI 產生者簽名與格式正確無誤。
 2. **嚴格禁止跨技能越界代理提交**：若工作區在開啟發布分支前不乾淨，嚴格禁止代為提交既有變更，必須中斷並指引使用者執行 `/agy-github-flow:commit`。
 3. **嚴格禁止無差別全量暫存（`git add -A`）**：提交版號時僅允許精準暫存版號定義檔，禁止將未預期的檔案納入發布提交中。

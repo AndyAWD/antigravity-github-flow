@@ -40,7 +40,7 @@ description: 一鍵為全新專案搭建 GitHub Flow 標準的單一 main 主分
      ```bash
      node <commit技能絕對目錄>/scripts/commit.js "chore: 初始化專案"
      ```
-     （該腳本會自動注入官方共同作者簽名 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`）。
+     （該腳本會自動注入 AI 產生者簽名 `Generated-by: [模型名稱] ([思考等級])`（未註明時預設 `Generated-by: Google Antigravity`））。
    - **嚴格禁止執行原生 `git commit` 指令**。
 3. 若儲存庫已有其他檔案但尚未提交，不得擅自代理提交，應中斷並指引使用者使用 `/agy-github-flow:commit`。
 
@@ -55,5 +55,5 @@ description: 一鍵為全新專案搭建 GitHub Flow 標準的單一 main 主分
 
 ## 嚴格禁止事項（Anti-patterns）
 
-1. **嚴格禁止執行原生 `git commit` 指令**：所有提交必須統一由 `commit` 技能的 `scripts/commit.js` 執行，以確保共同作者簽名與慣例式提交格式正確無誤。
+1. **嚴格禁止執行原生 `git commit` 指令**：所有提交必須統一由 `commit` 技能的 `scripts/commit.js` 執行，以確保 AI 產生者簽名與慣例式提交格式正確無誤。
 2. **嚴格禁止跨技能越界代理提交**：若非空白儲存庫且工作區存在未提交的變更，必須直接中斷並向使用者明確說明，嚴格禁止自行詢問代為提交或私自執行 git 提交指令。

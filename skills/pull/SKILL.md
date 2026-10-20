@@ -127,7 +127,7 @@ git pull --ff-only
   ```bash
   node <commit技能絕對目錄>/scripts/commit.js "Merge branch '<remote>/<branch>' into <當前分支>"
   ```
-  （該腳本會自動注入官方共同作者簽名 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`）。
+  （該腳本會自動注入 AI 產生者簽名 `Generated-by: [模型名稱] ([思考等級])`（未註明時預設 `Generated-by: Google Antigravity`））。
   **嚴格禁止執行原生 `git commit` 指令**。
 - 若選擇中止本次拉取：依拉取模式執行 `git merge --abort` 或 `git rebase --abort`。
 - 若選擇由使用者自行編輯排解：保持衝突標記，並提示使用者完成排解後可使用 `/agy-github-flow:commit` 提交。
@@ -194,6 +194,6 @@ git pull --ff-only
 
 ## 嚴格禁止事項（Anti-patterns）
 
-1. **嚴格禁止執行原生 `git commit` 指令**：本技能完全不包含提交程式碼的功能。任何程式碼提交必須由 `commit` 技能經由 `scripts/commit.js` 執行，以確保共同作者簽名與慣例式提交格式正確無誤。
+1. **嚴格禁止執行原生 `git commit` 指令**：本技能完全不包含提交程式碼的功能。任何程式碼提交必須由 `commit` 技能經由 `scripts/commit.js` 執行，以確保 AI 產生者簽名與慣例式提交格式正確無誤。
 2. **嚴格禁止跨技能越界代理提交**：當工作區有未提交修改且使用者希望先建立 Commit 時，必須直接中斷並指引使用者執行 `/agy-github-flow:commit`，嚴格禁止在本技能內自行拼湊或執行原生 `git add` 或 `git commit` 代為提交。
 3. **嚴格禁止在非乾淨狀態下逕行執行拉取**：工作區有未提交變更時，不可在未暫存或未提交的狀態下直接執行 `git pull`，避免檔案遭覆寫或污染。

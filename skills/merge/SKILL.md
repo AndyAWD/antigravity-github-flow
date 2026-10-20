@@ -71,7 +71,7 @@ description: 依照 GitHub Flow 規則執行分支合併至 main 主分支。當
   ```bash
   node <commit技能絕對目錄>/scripts/commit.js "Merge branch '<原始工作分支>' into main"
   ```
-  （該腳本會自動注入官方共同作者簽名 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`）。
+  （該腳本會自動注入 AI 產生者簽名 `Generated-by: [模型名稱] ([思考等級])`（未註明時預設 `Generated-by: Google Antigravity`））。
   **嚴格禁止執行原生 `git commit` 指令**。
 - 複雜衝突（涉及核心業務邏輯）請保留衝突狀態，並向使用者說明衝突檔案，待使用者確認排解後再繼續。
 
@@ -104,6 +104,6 @@ description: 依照 GitHub Flow 規則執行分支合併至 main 主分支。當
 
 ## 嚴格禁止事項（Anti-patterns）
 
-1. **嚴格禁止執行原生 `git commit` 指令**：所有提交與衝突排解後之合併提交，必須統一由 `scripts/commit.js` 執行，以確保共同作者簽名與格式正確無誤。
+1. **嚴格禁止執行原生 `git commit` 指令**：所有提交與衝突排解後之合併提交，必須統一由 `scripts/commit.js` 執行，以確保 AI 產生者簽名與格式正確無誤。
 2. **嚴格禁止在非乾淨工作區執行分支切換或合併**：若偵測到未提交變更，必須直接中斷並向使用者明確說明，嚴格禁止自行詢問代為提交或私自執行 git 提交指令。
 3. **嚴格禁止無差別全量暫存（`git add -A`）**：排解衝突時僅允許精準暫存已解決衝突的檔案。

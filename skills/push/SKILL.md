@@ -40,5 +40,5 @@ description: 執行 git push 將本地變更推送到遠端儲存庫。當使用
 
 ## 嚴格禁止事項（Anti-patterns）
 
-1. **嚴格禁止執行原生 `git commit` 指令**：本技能完全不包含提交程式碼的功能。任何程式碼提交必須由 `commit` 技能經由 `scripts/commit.js` 執行，以確保共同作者簽名與慣例式提交格式正確無誤。
+1. **嚴格禁止執行原生 `git commit` 指令**：本技能完全不包含提交程式碼的功能。任何程式碼提交必須由 `commit` 技能經由 `scripts/commit.js` 執行，以確保 AI 產生者簽名與慣例式提交格式正確無誤。
 2. **嚴格禁止跨技能越界代理提交**：偵測到工作區有未提交變更時，嚴格禁止自行執行 `git add` 或 `git commit` 代使用者提交，必須指引使用者使用 `/agy-github-flow:commit`。
