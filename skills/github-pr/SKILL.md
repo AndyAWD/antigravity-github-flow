@@ -42,7 +42,7 @@ description: 專為 GitHub 拉取請求（Pull Request）設計的多語系說�
 
 - **問題內容**：`請選擇本次 Pull Request（拉取請求）要使用的語言：`
 - **選項清單**：
-  1. `(Recommended) 繁體中文`
+  1. `繁體中文`
   2. `英文`
   3. `中英雙語對照`
 

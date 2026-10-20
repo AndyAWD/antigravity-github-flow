@@ -62,7 +62,7 @@ git pull --ff-only
     {
       "question": "偵測到工作區有未提交的修改，無法直接安全拉取。請問您希望如何處理？",
       "options": [
-        "(Recommended) 先暫存變更（git stash）後拉取，拉取完畢再還原（git stash pop）",
+        "先暫存變更（git stash）後拉取，拉取完畢再還原（git stash pop）",
         "將目前的修改先建立 Commit 後再拉取",
         "放棄本地未提交的修改（git reset --hard）後拉取",
         "取消拉取操作"
@@ -90,7 +90,7 @@ git pull --ff-only
     {
       "question": "目前分支與遠端已雙向分叉（本地與遠端皆有新提交），請問您偏好哪種整合方式？",
       "options": [
-        "(Recommended) 以變基方式拉取（git pull --rebase），保持線型歷史整潔",
+        "以變基方式拉取（git pull --rebase），保持線型歷史整潔",
         "以普通合併方式拉取（git pull --no-rebase），建立合併節點",
         "放棄本地提交，強制對齊遠端（git reset --hard @{u}）",
         "取消拉取操作"
@@ -111,7 +111,7 @@ git pull --ff-only
     {
       "question": "拉取時與遠端檔案發生內容衝突，請問您希望如何排解？",
       "options": [
-        "(Recommended) 請 AI 協助分析衝突標記並逐一排解衝突檔案",
+        "請 AI 協助分析衝突標記並逐一排解衝突檔案",
         "中止本次拉取並還原至拉取前狀態（git merge --abort / git rebase --abort）",
         "由我自行手動編輯檔案解決衝突"
       ],
@@ -140,7 +140,7 @@ git pull --ff-only
     {
       "question": "目前分支尚未設定遠端追蹤分支，請問您希望如何拉取？",
       "options": [
-        "(Recommended) 追蹤遠端同名分支並拉取（git branch --set-upstream-to=origin/<branch> && git pull）",
+        "追蹤遠端同名分支並拉取（git branch --set-upstream-to=origin/<branch> && git pull）",
         "拉取 main 主分支的最新進度整併至當前分支（git pull origin main）",
         "保持獨立，取消拉取"
       ],
@@ -160,7 +160,7 @@ git pull --ff-only
     {
       "question": "目前處於分離 HEAD（Detached HEAD）狀態，未綁定任何分支。請問您希望？",
       "options": [
-        "(Recommended) 為目前提交建立新分支並切換（git checkout -b <新分支名>）",
+        "為目前提交建立新分支並切換（git checkout -b <新分支名>）",
         "切換回 main 分支後拉取最新程式碼（git checkout main && git pull）",
         "取消拉取操作"
       ],
@@ -180,7 +180,7 @@ git pull --ff-only
     {
       "question": "遠端連線或憑證驗證失敗，無法完成拉取。請問您希望？",
       "options": [
-        "(Recommended) 重新嘗試拉取（Retry）",
+        "重新嘗試拉取（Retry）",
         "檢查遠端設定與 GitHub 登入狀態（gh auth status）",
         "取消拉取操作"
       ],

@@ -43,7 +43,7 @@ description: 依照 GitHub Flow 規則執行分支合併至 main 主分支。當
     {
       "question": "目前在工作分支，請問您希望如何進行合併？",
       "options": [
-        "(Recommended) 透過 GitHub 建立 Pull Request 進行審查與線上合併",
+        "透過 GitHub 建立 Pull Request 進行審查與線上合併",
         "直接在本地端將目前分支合併至 main 主分支"
       ],
       "is_multi_select": false

@@ -60,7 +60,7 @@ description: 依據 SemVer 2.0.0 規範，分析 main 主分支上未標籤的�
        {
          "question": "發現多個未標籤的合併節點，請問要標籤哪種範圍？",
          "options": [
-           "(Recommended) 僅把最近的一次合併節點打上版本號",
+           "僅把最近的一次合併節點打上版本號",
            "全部的合併節點都要打上標籤"
          ],
          "is_multi_select": false

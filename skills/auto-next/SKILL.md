@@ -72,7 +72,7 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
                {
                  "question": "目前在 main 主分支且尚未建立任何版本標籤。請問是否準備進行初版發布（例如標記 v1.0.0）？",
                  "options": [
-                   "(Recommended) 暫不標記，準備開發新功能（進入下一步選單）",
+                   "暫不標記，準備開發新功能（進入下一步選單）",
                    "是，進行初版發布並打上版本標籤（執行 tag 技能）"
                  ],
                  "is_multi_select": false
@@ -89,7 +89,7 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
        - 若目前分支已有開啟中（OPEN）的 PR：向使用者說明「目前分支已在 GitHub 上發起 Pull Request 進行審查中，正在等待 Review 與線上合併。您可以繼續在本地進行修改提交，或等待 PR 線上合併完成後再執行 auto-next。」**嚴格禁止重複執行 github-pr**。
      - **意圖確認（Confirmation Prompt）**：若無開啟中的 PR，使用 `ask_question` 工具確認使用者開發完成意圖：
        - 題目：「目前工作分支進度已推播至雲端。請問本功能/修復是否已開發完畢，準備發起 Pull Request 審查（或進行合併）？」
-       - 選項：`["(Recommended) 是，功能已完成，準備發起 PR 審查", "否，仍在開發中，暫時保留分支"]`
+       - 選項：`["是，功能已完成，準備發起 PR 審查", "否，仍在開發中，暫時保留分支"]`
        - 使用者選擇「是」時，讀取並執行 `agy-github-flow:github-pr`（或依使用者偏好執行 `agy-github-flow:merge`）技能；選擇「否」則保留現狀並結束流程。
    - **情境 3：純本地儲存庫（無 remote）**：
      - 若在工作分支且工作區乾淨，直接以 `ask_question` 詢問是否進行本地合併回 `main` 主分支。
@@ -99,7 +99,7 @@ description: 專為不熟悉 Git 的使用者設計的自動模式，AI 會自�
    - **行動**：使用 `ask_question` 工具顯示互動選單，詢問使用者想做什麼：
      - 標題：「目前的專案狀態很健康，都已經妥善儲存囉！接下來您想做什麼呢？」
      - 選項：
-       1. (Recommended) 開發新功能（執行 `git checkout -b feature/<name> main`）
+       1. 開發新功能（執行 `git checkout -b feature/<name> main`）
        2. 修復 Bug（執行 `git checkout -b fix/<name> main`）
        3. 準備發布新版本（執行 `agy-github-flow:release` 技能）
        4. 從雲端擷取並拉取最新程式碼（執行 `agy-github-flow:pull` 技能）
