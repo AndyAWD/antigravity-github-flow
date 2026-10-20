@@ -20,7 +20,7 @@ agy plugin install https://github.com/AndyAWD/antigravity-github-flow
 
 1. **Seamless Cross-Platform Compatibility**: Fully compatible with Antigravity CLI terminal, IDE sidebar chat, and Antigravity 2.0 Chat Canvas.
 2. **Auto Navigation & Flow Progression**: Designed for developers of all skill levels, AI automatically analyzes project state and advances to the next logical GitHub Flow step.
-3. **Strict Conventional Commits & Auto Splitting**: Built-in rules ensure consistent `<type>[scope]: <description>` structure, automatically split unrelated changes into discrete commits, and attach Google Antigravity co-author attribution.
+3. **Strict Conventional Commits & Auto Splitting**: Built-in rules ensure consistent `<type>[scope]: <description>` structure, automatically split unrelated changes into discrete commits, and attach AI generator attribution (`Generated-by`).
 4. **Streamlined Single-Trunk Model**: Centered around `main`; feature and bugfix branches branch off `main` and merge back cleanly via PR or safe local merge.
 5. **Standardized Bilingual Docs & Release Pipeline**: Integrated multi-language PR templates, bilingual GitHub Release changelogs, and automated bilingual README synchronization.
 6. **Safe Global Synchronization**: Built-in multi-branch background fast-forwarding and diagnostic decision trees balance operational efficiency with workspace safety.
@@ -112,7 +112,7 @@ Once installed, trigger capabilities using natural language prompts or dedicated
   1. Smart untracked files review: Inspects file contents, explains functionality, groups files by type, and prompts the user via multi-select to choose which files to track, discard, or ignore.
   2. Splits multi-task changes into discrete logical commits.
   3. Guides switching off `main` if on trunk, or commits directly if intended.
-  4. Generates Conventional Commit messages with Google Antigravity co-author trailer.
+  4. Generates Conventional Commit messages with AI generator trailer (`Generated-by: <model> (<thinking>)`, fallback to `Generated-by: Google Antigravity`).
 
 ### 3. Branch Merge (Merge)
 
