@@ -87,7 +87,16 @@ description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動
 
 #### 1. 多個未追蹤檔案時（多選模式：ask_user_question / ask_question）
 
-在呼叫工具前，先在對話中以 Markdown 輸出群組與檔案功能說明，接著呼叫多選確認：
+在呼叫 `ask_question` 工具前，**必須先在對話中輸出精美且可點擊的 Markdown 表格**，呈現各檔案路徑（附可點擊連結）、完整分類與詳細功能說明：
+
+| 檔案路徑 | 類型 | 功能說明 |
+| :--- | :--- | :--- |
+| [`src/auth.js`](file:///workspace/src/auth.js) | 程式原始碼 | 處理使用者登入與 JWT 權杖簽署 |
+| [`config/app.json`](file:///workspace/config/app.json) | 設定與組態 | 應用程式 API 端點與連線逾時設定 |
+| [`docs/api.md`](file:///workspace/docs/api.md) | 說明文件 | REST API 規格說明書 |
+| [`tests/auth.test.js`](file:///workspace/tests/auth.test.js) | 測試檔案 | 登入驗證單元測試 |
+
+接著呼叫 `ask_question` 進行多選確認。選項格式嚴格採用「**`[簡稱分類] 相對路徑 - 簡短功能說明`**」（例如 `[原始碼] agents/devfest_agent.py - DevFest 文案 Agent 邏輯`），**嚴格禁止**在選項內重複路徑、**嚴格禁止**包含 `file:///` 超連結、**嚴格禁止**重複前綴「將 ... 加入版本控制」等贅字：
 
 ```json
 {
@@ -95,10 +104,10 @@ description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動
     {
       "question": "偵測到以下未追蹤檔案並已完成功能分析。請選擇要加入版本控制的檔案：",
       "options": [
-        "將 [src/auth.js](file:///workspace/src/auth.js) 加入版本控制（[程式原始碼] 處理使用者登入與 JWT 權杖簽署）",
-        "將 [config/app.json](file:///workspace/config/app.json) 加入版本控制（[設定與組態] 應用程式 API 端點與連線逾時設定）",
-        "將 [docs/api.md](file:///workspace/docs/api.md) 加入版本控制（[說明文件] REST API 規格說明書）",
-        "將 [tests/auth.test.js](file:///workspace/tests/auth.test.js) 加入版本控制（[測試檔案] 登入驗證單元測試）"
+        "[原始碼] src/auth.js - 使用者登入與 JWT 權杖簽署",
+        "[設定] config/app.json - API 端點與連線逾時設定",
+        "[文件] docs/api.md - REST API 規格說明書",
+        "[測試] tests/auth.test.js - 登入驗證單元測試"
       ],
       "is_multi_select": true
     }
@@ -132,11 +141,13 @@ description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動
 
 #### 2. 單一未追蹤檔案時（單選模式）
 
+若僅有單一未追蹤檔案，同樣在對話中先呈現檔案資訊，`ask_question` 的題目以 `[簡稱分類] 相對路徑` 呈現，避免重複完整絕對路徑或包含 `file:///`：
+
 ```json
 {
   "questions": [
     {
-      "question": "偵測到未追蹤檔案 [path/to/file](file:///workspace/path/to/file)（功能：<功能摘要說明>），請問是否要加入版本控制？",
+      "question": "偵測到未追蹤檔案 [類別] path/to/file（功能：<功能摘要說明>），請問是否要加入版本控制？",
       "options": [
         "(Recommended) 加入版本控制（執行 git add）",
         "加入 .gitignore 忽略此檔案",
@@ -165,10 +176,10 @@ description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動
         - 提煉並說明每個檔案的作用與功能（例如：定義何種邏輯、提供何種功能、組態設定項目、文件說明或測試案例）。
      2. **相同類型檔案依群組顯示**：
         - 將相同類型或用途的檔案進行群組化歸納（例如：程式原始碼群組、設定與組態群組、建置與相依性群組、說明文件群組、測試檔案群組、樣式與標記群組、暫存與記錄檔群組等）。
-        - 在向使用者提問之前，以 Markdown 結構化清單呈現各群組名稱與每個檔案的功能說明。
+        - 在向使用者提問之前，**必須在對話中以 Markdown 輸出包含可點擊超連結（`[相對路徑](file:///完整絕對路徑)`）之精美結構化表格**，呈現各檔案路徑、所屬群組與詳細功能說明。
      3. **詢問是否加入版本控制**：
-        - **多個檔案**：呼叫 `ask_question` 工具（使用者提示詞中亦稱 `ask_user_question`，設定 `is_multi_select: true` 多選模式），選項中列出各檔案（標註群組名稱與功能摘要）供使用者逐一勾選要加入版本控制的檔案。
-        - **單一檔案**：呼叫 `ask_question`（`is_multi_select: false`），呈現該檔案功能後詢問處置方式（加入版本控制 / 暫不加入版本控制 / 加入 .gitignore / 丟棄刪除）。
+        - **多個檔案**：呼叫 `ask_question` 工具（使用者提示詞中亦稱 `ask_user_question`，設定 `is_multi_select: true` 多選模式），選項格式嚴格採用 `[簡稱分類] 相對路徑 - 簡短功能說明`（例如 `[原始碼] agents/devfest_agent.py - DevFest 文案 Agent 邏輯`，嚴禁在選項內使用 `file:///` 超連結、重複路徑或『將...加入版本控制』贅字），供使用者逐一勾選要加入版本控制的檔案。
+        - **單一檔案**：呼叫 `ask_question`（`is_multi_select: false`），題目呈現簡短 `[類別] 相對路徑` 與功能後詢問處置方式（加入版本控制 / 暫不加入版本控制 / 加入 .gitignore / 丟棄刪除）。
      4. **處置未選取檔案**：
         - 若有未被選取的檔案，依上述確認處置規則詢問處置方式（保留不追蹤 / 加入 .gitignore / 丟棄刪除）。
      5. **執行加入或處置**：
@@ -211,4 +222,4 @@ Generated-by: Gemini 3.8 Flash (High)
 
 1. **嚴格禁止執行原生 `git commit` 指令**：所有提交必須統一呼叫 `scripts/commit.js` 執行，嚴格禁止直接使用 `git commit -m` 或其他原生提交指令，以防止遺漏 AI 產生者簽名或繞過簽名正規化驗證。
 2. **嚴格禁止使用非規範簽名或個人信箱**：產生者簽名必須嚴格為 `Generated-by: [目前模型名稱] ([思考等級])`（未註明時預設 `Generated-by: Google Antigravity`），嚴格禁止使用個人信箱或非規範標籤。
-3. **嚴格禁止未經檢視與未經使用者確認直接提交未追蹤新檔案**：若偵測到未追蹤檔案，必須確實看過檔案內容並說明其功能、同類型檔案依群組呈現，並透過 `ask_question`（使用者提示詞中亦稱 `ask_user_question`，多檔案時使用多選模式 `is_multi_select: true`）由使用者親自挑選要納入版本控制的檔案，嚴禁未看過檔案內容即盲目詢問或無差別全量暫存（`git add -A`）。
+3. **嚴格禁止未經檢視與未經使用者確認直接提交未追蹤新檔案**：若偵測到未追蹤檔案，必須確實看過檔案內容並說明其功能、在對話中以 Markdown 表格呈現完整檔案可點擊連結與功能說明，並透過 `ask_question`（使用者提示詞中亦稱 `ask_user_question`，多檔案時使用多選模式 `is_multi_select: true`，選項格式採用 `[簡稱分類] 相對路徑 - 簡短功能說明`）由使用者親自挑選要納入版本控制的檔案，嚴禁未看過檔案內容即盲目詢問或無差別全量暫存（`git add -A`）。
