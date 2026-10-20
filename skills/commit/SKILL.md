@@ -1,6 +1,6 @@
 ---
 name: agy-github-flow:commit
-description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 必須使用 scripts/commit.js 提交並附帶官方共同作者簽名 Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>。當使用者輸入 /agy-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。"
+description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動產生 git commit。分析目前工作區變更，若包含多個獨立任務會自動拆分成多個 commit。整合 GitHub Flow 分支策略。所有 commit 必須使用 scripts/commit.js 提交並附帶 AI 產生者簽名 Generated-by: [目前模型名稱] ([思考等級])（未註明時預設 Generated-by: Google Antigravity）。當使用者輸入 /agy-github-flow:commit 或提及「幫我 commit」、「整理提交」等字眼時觸發。"
 ---
 
 # 慣例式提交與 GitHub Flow 規範
@@ -47,7 +47,7 @@ description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動
    - 必須使用繁體中文撰寫。
 
 6. 結尾（Footer）：
-   - 用於標註關聯的 Issue 編號（如 `Closes #123`）或共同作者簽名。
+   - 用於標註關聯的 Issue 編號（如 `Closes #123`）或 `Generated-by` 等簽名。
 
 7. 重大變更（Breaking Changes）：
    - 若變更會破壞向後相容性，必須在 type 或 scope 後方加上驚嘆號 `!`（如 `feat!:` 或 `feat(api)!:`），或在 footer 標註 `BREAKING CHANGE: <繁體中文描述>`。
@@ -186,18 +186,29 @@ description: "依照慣例式提交（Conventional Commits）v1.0.0 規範自動
 
 ## 提交規範與簽名
 
-所有提交訊息最下方必須包含共同作者簽名：
+所有提交訊息最下方必須在 Git Trailer 區塊包含 AI 產生者簽名：
 
 ```text
 <type>[optional scope]: <繁體中文描述>
 
 [optional body]
 
-Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>
+Generated-by: [目前模型名稱] ([思考等級])
 ```
+
+例如：
+```text
+feat(auth): 新增使用者登入驗證功能
+
+實作基於 JWT 的權杖驗證機制，並支援連線逾時自動刷新。
+
+Generated-by: Gemini 3.8 Flash (High)
+```
+
+若未指明模型名稱或思考等級，預設兜底（Fallback）為 `Generated-by: Google Antigravity`。
 
 ## 嚴格禁止事項（Anti-patterns）
 
-1. **嚴格禁止執行原生 `git commit` 指令**：所有提交必須統一呼叫 `scripts/commit.js` 執行，嚴格禁止直接使用 `git commit -m` 或其他原生提交指令，以防止遺漏官方共同作者簽名或繞過簽名正規化驗證。
-2. **嚴格禁止使用非官方共同作者簽名變體**：共同作者簽名必須嚴格為 `Co-authored-by: Google Antigravity <242056456+google-antigravity@users.noreply.github.com>`，嚴格禁止使用個人信箱或其他非官方格式。
+1. **嚴格禁止執行原生 `git commit` 指令**：所有提交必須統一呼叫 `scripts/commit.js` 執行，嚴格禁止直接使用 `git commit -m` 或其他原生提交指令，以防止遺漏 AI 產生者簽名或繞過簽名正規化驗證。
+2. **嚴格禁止使用非規範簽名或個人信箱**：產生者簽名必須嚴格為 `Generated-by: [目前模型名稱] ([思考等級])`（未註明時預設 `Generated-by: Google Antigravity`），嚴格禁止使用個人信箱或非規範標籤。
 3. **嚴格禁止未經檢視與未經使用者確認直接提交未追蹤新檔案**：若偵測到未追蹤檔案，必須確實看過檔案內容並說明其功能、同類型檔案依群組呈現，並透過 `ask_question`（使用者提示詞中亦稱 `ask_user_question`，多檔案時使用多選模式 `is_multi_select: true`）由使用者親自挑選要納入版本控制的檔案，嚴禁未看過檔案內容即盲目詢問或無差別全量暫存（`git add -A`）。
